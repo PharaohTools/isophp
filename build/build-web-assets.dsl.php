@@ -4,13 +4,8 @@ RunCommand execute
   guess
 
 RunCommand execute
-  label "Copy assets to public dir"
-  command "cd {{{ param::start-dir }}} && cp -r app clients/web"
-  guess
-
-RunCommand execute
-  label "Copy assets to public dir"
-  command "cd {{{ param::start-dir }}} && cp -r core clients/web"
+  label "Build to our Target Client"
+  command "cd {{{ param::start-dir }}} && php build/build_to_uniter.php"
   guess
 
 Process kill
@@ -19,6 +14,14 @@ Process kill
   use-pkill
   guess
   ignore_errors
+
+RunCommand execute
+  command "cd {{{ param::start-dir }}}/clients/web && ptdeploy vhe add -yg --vhe-url=$$subdomain.$$domain  --vhe-default-template-name=docroot-no-suffix"
+  guess
+
+RunCommand execute
+  command "ptdeploy he add -yg --host-name=www.$$domain"
+  guess
 
 RunCommand execute
   label "Enable Site and restart Apache"
@@ -30,14 +33,6 @@ RunCommand execute
   command "bash -c 'php {{{ param::start-dir }}}/server/isophp_server.php &' > /var/log/isophp_server.log 2>&1 </dev/null"
   nohup true
   background
-  guess
-
-RunCommand execute
-  command "cd {{{ param::start-dir }}}/www && ptdeploy vhe add -yg --vhe-url=www.$$domain  --vhe-default-template-name=docroot-no-suffix"
-  guess
-
-RunCommand execute
-  command "ptdeploy he add -yg --host-name=www.$$domain"
   guess
 
 RunCommand execute
