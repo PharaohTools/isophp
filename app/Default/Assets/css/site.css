@@ -1,0 +1,110 @@
+.fh5co-cover .overlay {
+    background-color: #000;
+    background-image: url("../images/iso-wide.jpg");
+    background-position: bottom right;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.header_logo {
+    max-height: 75px ;
+}
+
+.fullWidth {
+    display: block;
+    float: left;
+    width: 100%;
+}
+
+#ChatApplicationWrapper {
+
+}
+
+#ChatApplicationWrapper .applicationTitle {
+    text-align: center;
+}
+
+.ChatMessages {
+    background: rgba(76, 74, 138, 0.9) none repeat scroll 0 0;
+    height: 250px;
+    max-height: 250px;
+    overflow-y: scroll;
+}
+
+.ChatMessages span {
+    display: block;
+    width: 100%;
+    color: white;
+    font-size: 120%;
+    font-weight: bold;
+}
+
+.larger_paragraph {
+    font-size: 18px;
+}
+
+span.chat_choice {
+    cursor: pointer;
+}
+
+span.chat_choice:hover {
+    background: rgba(76, 74, 138, 0.9) none repeat scroll 0 0;
+}
+
+/*span.chat_name_choice {*/
+    /*cursor: pointer;*/
+/*}*/
+
+/*span.chat_name_choice:hover {*/
+    /*background: rgba(76, 74, 138, 0.9) none repeat scroll 0 0;*/
+/*}*/
+
+span#send_chat_message {
+    display: block;
+    margin: 0 auto;
+}
+
+.CodeExample {
+    font-size: 110% ;
+    text-align: left;
+    overflow-x: hidden;
+}
+
+.CodeExample h4 {
+    margin: 0;
+}
+
+.CodeExample iframe {
+    border: 0;
+    width: 100%;
+}
+
+.coming_soon_banner {
+    display: block;
+    margin: 0 auto;
+    width: 50% ;
+}
+
+
+.feature-center .link_title {
+    text-align: center;
+}
+
+@media (max-width: 767px) {
+    .feature_icon {
+        display: none !important;
+    }
+    .feature-center {
+        padding-left: 0 !important;
+    }
+    .ChatMessages {
+        height: 125px;
+        max-height: 125px;
+    }
+    .display-tc {
+        max-width: 400px !important;
+    }
+    .display-t {
+        height: 450px !important;
+    }
+}

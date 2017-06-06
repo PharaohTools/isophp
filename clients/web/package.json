@@ -1,0 +1,40 @@
+{
+  "name": "iso_php_website",
+  "version": "1.0.0",
+  "author": "Pharaoh Tools",
+  "license": "none",
+  "description": "The ISO PHP Framework Website",
+  "main": "main.js",
+  "scripts": {
+    "build": "(browserify app --standalone=iso_php_website | uglifyjs > assets/uniter_bundle/bundle.js)",
+    "webpack": "webpack"
+  },
+  "repository": "https://anon:any@source.internal.pharaohtools.com/git/public/iso_php_website",
+  "keywords": [
+    "PharaohTools",
+    "uniter",
+    "php",
+    "browserify",
+    "fs"
+  ],
+  "devDependencies": {
+    "jquery": "^2.1.4",
+    "uuid": "^3.0.0",
+    "json-loader": "^0.5.1",
+    "uglifyify": "^3.0.1",
+    "uniter": "^1.0",
+    "browserify": "^10.2.0",
+    "globby": "^2.0.0",
+    "uglify-js": "^2.4.23",
+    "webpack": "^1.9.7",
+    "async": "^2.1.4",
+    "phpjs": "^1.3.2" ,
+    "node-libs-browser": "^0.5.0",
+    "socket.io": "1.2.0"
+  },
+  "browserify": {
+    "transform": [
+      "uglifyify"
+    ]
+  }
+}
