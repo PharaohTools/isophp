@@ -25,13 +25,14 @@ class BootStrap {
     public function executeControl($controlToExecute, $pageVars=null) {
         $control = new \Core\Control();
         $controlResult = $control->executeControl($controlToExecute, $pageVars);
-        try {
-            if ($controlResult["type"]=="view") {
-                $this->executeView( $controlResult["view"], $controlResult["pageVars"] ); }
-            else if ($controlResult["type"]=="control") {
-                $this->executeControl( $controlResult["control"], $controlResult["pageVars"] ); } }
-        catch (\Exception $e) {
-            throw new \Exception( 'No controller result type specified', 0, $e); }
+        if ($controlResult["type"]=="view") {
+            $this->executeView( $controlResult["view"], $controlResult["pageVars"] ); }
+        else if ($controlResult["type"]=="control") {
+            $this->executeControl( $controlResult["control"], $controlResult["pageVars"] ); }
+        else {
+            $exception = new \Exception( 'No controller result type specified', 0);
+            $exception->run() ;
+        }
     }
 
     private function executeView($viewTemplate, $viewVars) {
