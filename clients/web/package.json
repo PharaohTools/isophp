@@ -6,10 +6,10 @@
   "description": "The ISO PHP Framework Website",
   "main": "main.js",
   "scripts": {
-    "build": "(browserify app --standalone=iso_php_website | uglifyjs > assets/uniter_bundle/bundle.js)",
+    "build": "( ( (rm -rf uniter_bundle || true) && mkdir uniter_bundle ) && browserify app --standalone=isophp | uglifyjs > uniter_bundle/bundle.js)",
     "webpack": "webpack"
   },
-  "repository": "https://anon:any@source.internal.pharaohtools.com/git/public/iso_php_website",
+  "repository": "https://anon:any@source.internal.pharaohtools.com/git/public/isophp",
   "keywords": [
     "PharaohTools",
     "uniter",
