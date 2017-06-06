@@ -6,13 +6,15 @@
 'use strict';
 
 var $ = require('jquery'),
+    php = require('phpjs'),
     hasOwn = {}.hasOwnProperty,
     uniter = require('uniter'),
     phpEngine = uniter.createEngine('PHP'),
     output = document.getElementById('output');
 
-var file_require_string = 'require("/core/index.fephp") ; ' ;
-// file_require_string += 'require("/assets/php/main.fephp") ; ' ;
+var file_require_string = 'require("/core/autoload.fephp") ; ' ;
+file_require_string += 'require("/core/bootstrap.fephp") ; ' ;
+file_require_string += 'require("/core/index.fephp") ; ' ;
 
 function getParameterByName(name, url) {
     if (!url) {
@@ -52,14 +54,11 @@ phpEngine.configure({
 
 var this_console = console ;
 var this_window = window ;
-//var socket = new WebSocket('ws://127.0.0.1:33004') ;
-
-
 
 phpEngine.expose($, 'jQuery');
 phpEngine.expose(this_window, 'window');
 phpEngine.expose(this_console, 'console');
-//phpEngine.expose(window.socket, 'socket');
+phpEngine.expose(php, 'php');
 
 // Write content HTML to the DOM
 phpEngine.getStdout().on('data', function (data) {
@@ -67,7 +66,8 @@ phpEngine.getStdout().on('data', function (data) {
 });
 
 // this is looking in the filedata file which is all the php compressed in a key value with path keys
-var php_code_string = '<?php echo "dave" ; '+file_require_string+' ?>' ;
+var php_code_string = '<?php '+file_require_string+' ?>' ;
+console.log(php_code_string) ;
 
 // Go!
 phpEngine.execute(php_code_string).fail(function (error) {
