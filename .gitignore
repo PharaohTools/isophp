@@ -4,3 +4,7 @@ clients/web/app
 clients/web/core
 clients/desktop/app
 clients/desktop/core
+clients/*/vendor
+clients/*/uniter_bundle
+clients/*/node_modules
+clients/*/composer.lock
