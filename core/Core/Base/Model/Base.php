@@ -13,7 +13,9 @@ class Base {
     }
 
     public function ensureTrailingSlash($str) {
-        if (substr($str, -1, 1) != DIRECTORY_SEPARATOR) { $str .= DIRECTORY_SEPARATOR ; }
+        if (substr($str, -1, 1) != DIRECTORY_SEPARATOR) {
+            $str = $str . DIRECTORY_SEPARATOR ;
+        }
         return $str ;
     }
 
