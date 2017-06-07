@@ -13,6 +13,8 @@ var $ = require('jquery'),
     output = document.getElementById('output');
 
 var file_require_string = 'require("/core/autoload.fephp") ; ' ;
+file_require_string += 'require("/core/isophp.fephp") ; ' ;
+file_require_string += 'require("/core/init.fephp") ; ' ;
 file_require_string += 'require("/core/bootstrap.fephp") ; ' ;
 file_require_string += 'require("/core/index.fephp") ; ' ;
 
