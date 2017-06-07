@@ -1,10 +1,13 @@
 <?php
 
-class IndexPageModel extends \Model\Base {
+Namespace Model\Index ;
 
-    public function getPage($pageVars) {
-        $page = \Model\
+class PageModel extends \Model\Base {
 
-        }
+    public function getPage() {
+        $page['title'] = 'A title for an index page' ;
+        $page['heading'] = 'A heading for an index page' ;
+        return $page ;
+    }
 
 }
