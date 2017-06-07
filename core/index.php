@@ -1,10 +1,5 @@
 <?php
 
-class aConsole {
-    public static $console ;
-}
-
-aConsole::$console = $console ;
 
 $console->log('In the applications index file') ;
 $console->log($_REQUEST, $_SERVER) ;
