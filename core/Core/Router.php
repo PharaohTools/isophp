@@ -8,11 +8,6 @@ class Router {
     private	$route;
     private $availableRoutes = array() ;
 
-//    public function run($bootstrapParams) {
-//      \ISOPHP\js_core::$console->log('route is:', $this->route, "bs", $bootstrapParams) ;
-//      return $this->route ;
-//    }
-
     public function run($bootstrapParams) {
         $this->bootstrapParams = $bootstrapParams;
         $this->setCurrentRoute();
