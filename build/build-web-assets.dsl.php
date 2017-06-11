@@ -5,7 +5,7 @@ RunCommand execute
 
 RunCommand execute
   label "Build to our Target Client"
-  command "cd {{{ param::start-dir }}} && php build/build_to_uniter.php"
+  command "cd {{{ param::start-dir }}} && php build/build_to_uniter.php web"
   guess
 
 Process kill

@@ -1,15 +1,15 @@
 RunCommand execute
   label "Run the Node NPM Build"
-  command "cd {{{ param::start-dir }}}/clients/mobile && npm run build"
+  command "cd {{{ param::start-dir }}}/clients/desktop && npm run build"
   guess
 
 RunCommand execute
   label "Build to our Target Client"
-  command "cd {{{ param::start-dir }}} && php build/build_to_uniter.php"
+  command "cd {{{ param::start-dir }}} && php build/build_to_uniter.php desktop"
   guess
 
 RunCommand execute
-  command "cd {{{ param::start-dir }}}/clients/mobile && ptdeploy vhe add -yg --vhe-url=$$subdomain.$$domain  --vhe-default-template-name=docroot-no-suffix"
+  command "cd {{{ param::start-dir }}}/clients/desktop && ptdeploy vhe add -yg --vhe-url=$$subdomain.$$domain  --vhe-default-template-name=docroot-no-suffix"
   guess
 
 RunCommand execute
