@@ -12,8 +12,9 @@ var $ = require('jquery'),
     phpEngine = uniter.createEngine('PHP'),
     output = document.getElementById('output');
 
-var file_require_string = 'require("/core/autoload.fephp") ; ' ;
-file_require_string += 'require("/core/isophp.fephp") ; ' ;
+$.holdReady(true);
+
+var file_require_string = 'require("/core/isophp.fephp") ; ' ;
 file_require_string += 'require("/core/init.fephp") ; ' ;
 file_require_string += 'require("/core/bootstrap.fephp") ; ' ;
 file_require_string += 'require("/core/index.fephp") ; ' ;
@@ -56,8 +57,9 @@ phpEngine.configure({
 
 var this_console = console ;
 var this_window = window ;
+var jQuery = $ ;
 
-phpEngine.expose($, 'jQuery');
+phpEngine.expose(jQuery, 'jQuery');
 phpEngine.expose(this_window, 'window');
 phpEngine.expose(this_console, 'console');
 phpEngine.expose(php, 'php');
