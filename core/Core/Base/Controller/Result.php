@@ -2,13 +2,12 @@
 
 Namespace Controller ;
 
-class Base {
+class Result {
 
-  public $content;
-  protected $registeredModels = array();
-
-  public function __construct() {
-    $this->content = array();
-  }
+  public $page;
+  public $view;
+  public $control;
+  public $type;
+  public $view_control;
 
 }
