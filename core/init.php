@@ -1,17 +1,22 @@
 <?php
 
-
 \ISOPHP\core::$php = $php ;
 \ISOPHP\js_core::$console = $console ;
 \ISOPHP\js_core::$window = $window ;
+\ISOPHP\js_core::$jQuery = $jQuery ;
 
 function __autoload($classname) {
+    \ISOPHP\js_core::$console->log("Autoloading " . $classname) ;
     if ($classname === 'ISOPHP\core') {
         return ;
     } else if ($classname === 'ISOPHP\js_core') {
         return ;
     } else if ($classname === 'Controller\Base') {
         $path = '/core/Core/Base/Controller/Base.fephp' ;
+        require_once ($path) ;
+        return ;
+    } else if ($classname === 'Controller\Result') {
+        $path = '/core/Core/Base/Controller/Result.fephp' ;
         require_once ($path) ;
         return ;
     } else if ($classname === 'Model\Base') {
@@ -22,8 +27,9 @@ function __autoload($classname) {
         $path = '/core/Core/Base/Info/Base.fephp' ;
         require_once ($path) ;
         return ;
+    } else if ($classname === 'stdClass') {
+        return ;
     }
-    \ISOPHP\js_core::$console->log($classname) ;
     $parts = \ISOPHP\core::$php->explode('\\', $classname) ;
     \ISOPHP\js_core::$console->log($parts) ;
     if ($parts[0] === 'Core') {
@@ -55,6 +61,15 @@ function __autoload($classname) {
         $path = '/app/'.$module.'/Model/'.$parts[1].$parts[2].'.fephp' ;
         if (isset($path)) {
             \ISOPHP\js_core::$console->log('found a model path ' . $path) ;
+            require_once ($path) ;
+        }
+    }
+    else if ($parts[0] === 'View') {
+        \ISOPHP\js_core::$console->log('Looking in View') ;
+        $module = \ISOPHP\core::$php->str_replace('View', '', $parts[1]) ;
+        $path = '/app/'.$module.'/View/'.$parts[1].'.fephp' ;
+        if (isset($path)) {
+            \ISOPHP\js_core::$console->log('found a view path ' . $path) ;
             require_once ($path) ;
         }
     }
