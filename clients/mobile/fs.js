@@ -23,14 +23,15 @@ var fs = require('fs'),
 
 files.forEach(function (filePath) {
     // fileData[path.relative(root, filePath)] = fs.readFileSync(filePath).toString();
-    var short_path = filePath.replace('/opt/electron-pharaohtools-installer/', '') ;
+    var short_path = filePath.replace(root, '') ;
+    console.log(short_path) ;
     fileData[short_path] = fs.readFileSync(filePath).toString();
 });
 
 main_files.forEach(function (filePath) {
     // fileData[path.relative(root, filePath)] = fs.readFileSync(filePath).toString();
-    var short_path = filePath.replace('/opt/electron-pharaohtools-installer/', '') ;
-    // console.log(short_path) ;
+    var short_path = filePath.replace(root, '') ;
+    console.log(short_path) ;
     mainFileData.push(short_path) ;
 });
 

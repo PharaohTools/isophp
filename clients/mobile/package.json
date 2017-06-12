@@ -6,30 +6,30 @@
     "main": "index.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "build": "(browserify app --standalone=iso_php_website | uglifyjs > uniter_bundle/bundle.js)",
+        "build": "( (rm -rf www/uniter_bundle || true) && mkdir www/uniter_bundle ) && (browserify app --standalone=iso_php_website | uglifyjs > www/uniter_bundle/bundle.js)",
         "webpack": "webpack"
     },
     "author": "Pharaoh Tools",
     "license": "none",
     "repository": "https://anon:any@source.internal.pharaohtools.com/git/public/php_mobile",
     "dependencies": {
+        "async": "^2.1.4",
+        "browserify": "^10.2.0",
         "cordova-android": "^6.2.3",
         "cordova-ios": "^4.4.0",
         "cordova-plugin-whitelist": "^1.3.2",
         "cordova-webos": "^3.7.0",
+        "globby": "^2.0.0",
         "jquery": "^2.1.4",
-        "uuid": "^3.0.0",
         "json-loader": "^0.5.1",
+        "node-libs-browser": "^0.5.0",
+        "phpjs": "^1.3.2",
+        "socket.io": "1.2.0",
+        "uglify-js": "^2.4.23",
         "uglifyify": "^3.0.1",
         "uniter": "^1.0",
-        "browserify": "^10.2.0",
-        "globby": "^2.0.0",
-        "uglify-js": "^2.4.23",
-        "webpack": "^1.9.7",
-        "async": "^2.1.4",
-        "phpjs": "^1.3.2",
-        "node-libs-browser": "^0.5.0",
-        "socket.io": "1.2.0"
+        "uuid": "^3.0.0",
+        "webpack": "^1.9.7"
     },
     "browserify": {
         "transform": [

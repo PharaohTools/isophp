@@ -1,0 +1,14 @@
+.app-loader {
+    background: #fff url("../images/loader.gif") no-repeat scroll center center;
+    height: 100%;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 99999999;
+    display: block;
+}
+
+/*.app-wrapper {*/
+    /*display: none;*/
+/*}*/
