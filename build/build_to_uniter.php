@@ -1,10 +1,19 @@
 <?php
 
-$target_client = 'web' ;
-
-$client_root = dirname(__DIR__).DIRECTORY_SEPARATOR."clients".DIRECTORY_SEPARATOR.$target_client.DIRECTORY_SEPARATOR ;
-
 $available_clients = array('desktop', 'mobile', 'web') ;
+
+$target_client = $argv[1] ;
+
+if (!in_array($target_client, $available_clients)) {
+    echo "The first parameter to this cli script must be target client of web, mobile or desktop\n" ;
+    exit(1) ;
+}
+
+if ($target_client === "mobile") {
+    $client_root = dirname(__DIR__).DIRECTORY_SEPARATOR."clients".DIRECTORY_SEPARATOR.'mobile'.DIRECTORY_SEPARATOR.'www'.DIRECTORY_SEPARATOR ; }
+else {
+    $client_root = dirname(__DIR__).DIRECTORY_SEPARATOR."clients".DIRECTORY_SEPARATOR.$target_client.DIRECTORY_SEPARATOR ;
+}
 
 
 $app_and_core = array('app', 'core') ;
