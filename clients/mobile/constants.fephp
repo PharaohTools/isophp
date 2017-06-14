@@ -1,0 +1,2 @@
+<?php
+define('CURRENT_TARGET', "web") ;

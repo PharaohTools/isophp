@@ -1,0 +1,151 @@
+body {
+    padding-top: 72px;
+}
+
+#page_sidebar.sidebar {
+    position: fixed;
+    z-index: 100;
+    border: 1px solid black;
+}
+
+@media (min-width: 768px) {
+    #page_sidebar.sidebar {
+        z-index: 100;
+        position: fixed;
+        width: 250px;
+        top: 20px;
+        padding-top: 0;
+    }
+}
+
+@media (max-width: 767px) {
+    #page_sidebar.sidebar {
+        z-index: revert;
+        position: relative;
+        width: 100%;
+        border: none;
+    }
+}
+
+#page-wrapper {
+    margin-left: 0;
+}
+
+div.well h2.text-uppercase {
+    text-align: center;
+}
+
+.pharaoh-message {
+    text-align: left;
+    width: 100%;
+}
+
+.pharaoh-message:hover {
+    cursor: default;
+}
+
+#overlay_are_you_sure {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);;
+    /*filter:alpha(opacity=50);*/
+    /*-moz-opacity:0.5;*/
+    /*-khtml-opacity: 0.5;*/
+    /*opacity: 0.5;*/
+    z-index: 10000;
+}
+
+#close_button_div {
+    position: relative;
+    float: right;
+    cursor: pointer;
+    top: -20px;
+    right: 16px;
+    width: 50px ;
+}
+
+#close_button_div img{
+    width: 75%;
+}
+
+.overlay_inner {
+    position: fixed;
+    margin: 10% 30%;
+    width: 40%;
+    height: 60%;
+    background-color: #fff;
+}
+
+.overlay_content {
+    position: relative;
+    margin: 5%;
+    width: 90%;
+    height: 90%;
+    background-color: #fff;
+    color: #000000;
+    overflow-y: scroll;
+}
+
+.navbar-header{
+    width: 100%;
+}
+.navbar-left{
+    float: left;
+}
+.navbar-right{
+    float: right;
+}
+
+.panel-primary {
+    background-color: #337ab7;
+    color: #fff;
+}
+
+.panel-primary a,
+.panel-primary a:hover,
+.panel-primary a:focus{
+    color: #fff;
+}
+
+.panel-primary span.allJobsCalendarLink {
+    color: #337ab7;
+}
+
+h3.title_username {
+    color: white ;
+}
+
+
+#page_sidebar {
+    background-color: #f5f5f5;
+    right: 22.5%;
+}
+
+ul#side-menu {
+    display: none;
+}
+
+
+.fullWidth {
+    display: block;
+    width: 100%;
+    float:left;
+    margin: 10px 0px;
+}
+
+
+@media (min-width: 800px) {
+    #wrapper.container {
+        width: 90%;
+    }
+    #wrapper.container pre {
+        font-size: 100%;
+    }
+    #page_sidebar {
+        right: 10%;
+    }
+}
