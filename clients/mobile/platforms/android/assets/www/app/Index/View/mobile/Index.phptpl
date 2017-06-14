@@ -6,7 +6,7 @@
         <div id="message_overlay">
     
         </div>
-        <h1>The Web Application Index Page</h1> ' ;
+        <h1>The Mobile Application Index Page</h1> ' ;
 
     for ($i=0; $i<20; $i++) {
         $html = $html . "Dave $i; " ;
