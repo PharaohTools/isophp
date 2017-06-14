@@ -12,3 +12,11 @@ RunCommand execute
   label "Build and run the executable applications"
   command 'su -c "(source {{{ param::start-dir }}}/build/android-shell.bash && cd {{{ param::start-dir }}}/clients/mobile && /usr/local/bin/cordova run android)" - pharaoh'
   guess
+  when "{{{ param::emulator }}}"
+
+
+RunCommand execute
+  label "Build and run the web server"
+  command 'su -c "(source {{{ param::start-dir }}}/build/android-shell.bash && cd {{{ param::start-dir }}}/clients/mobile && /usr/local/bin/cordova serve)" - pharaoh'
+  guess
+  when "{{{ param::webserver }}}"
