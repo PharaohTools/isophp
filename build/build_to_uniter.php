@@ -9,12 +9,12 @@ if (!in_array($target_client, $available_clients)) {
     exit(1) ;
 }
 
+$client_parent = $client_root = dirname(__DIR__).DIRECTORY_SEPARATOR."clients".DIRECTORY_SEPARATOR.$target_client.DIRECTORY_SEPARATOR ;
 if ($target_client === "mobile") {
     $client_root = dirname(__DIR__).DIRECTORY_SEPARATOR."clients".DIRECTORY_SEPARATOR.'mobile'.DIRECTORY_SEPARATOR.'www'.DIRECTORY_SEPARATOR ; }
 else {
     $client_root = dirname(__DIR__).DIRECTORY_SEPARATOR."clients".DIRECTORY_SEPARATOR.$target_client.DIRECTORY_SEPARATOR ;
 }
-
 
 $app_and_core = array('app', 'core') ;
 
@@ -142,3 +142,6 @@ foreach ($app_and_core as $app_or_core) {
 
     }
 }
+
+echo "        Copying constants from {$client_parent}constants.fephp to {$client_root}core/constants.fephp \n";
+system("cp -r {$client_parent}constants.fephp {$client_root}core/constants.fephp");
