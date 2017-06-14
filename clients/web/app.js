@@ -62,6 +62,7 @@ phpEngine.expose(jQuery, 'jQuery');
 phpEngine.expose(this_window, 'window');
 phpEngine.expose(this_console, 'console');
 phpEngine.expose(php, 'php');
+phpEngine.expose(file_index, 'file_index');
 
 // Write content HTML to the DOM
 phpEngine.getStdout().on('data', function (data) {
