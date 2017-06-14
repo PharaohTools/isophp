@@ -4,6 +4,7 @@ clients/web/app/*
 clients/web/core/*
 clients/desktop/app/*
 clients/desktop/core/*
+clients/desktop/exe
 clients/*/vendor
 clients/*/uniter_bundle
 clients/*/node_modules
