@@ -6,6 +6,20 @@
 \ISOPHP\js_core::$window = $window ;
 \ISOPHP\js_core::$jQuery = $jQuery ;
 
+if (CURRENT_TARGET === 'desktop') {
+
+    $console->log("desktop init") ;
+    $electron_app = $window->require('electron')->remote ;
+    \ISOPHP\electron::$BrowserWindow = $electron_app ;
+
+    \ISOPHP\js_core::$window->document->onreadystatechange = function () use ($electron_app) {
+        if (\ISOPHP\js_core::$window->document->readyState === "complete") {
+            \ISOPHP\electron::application_controls($electron_app);
+        }
+    } ;
+
+}
+
 function __autoload($classname) {
     \ISOPHP\js_core::$console->log("Autoloading " . $classname) ;
     if ($classname === 'ISOPHP\core') {
