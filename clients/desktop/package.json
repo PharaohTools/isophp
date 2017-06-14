@@ -8,10 +8,10 @@
   "scripts": {
     "start": "electron .",
     "build:fs": "node fs",
-    "build": "npm run build:fs && (browserify app --standalone=pharaohInstaller | uglifyjs > uniter_bundle/bundle.js)",
+    "build": "npm run build:fs && (browserify app --standalone=iso_php_desktop | uglifyjs > uniter_bundle/bundle.js)",
     "webpack": "webpack"
   },
-  "repository": "https://anon:any@source.internal.pharaohtools.com/git/public/pharaoh_installer",
+  "repository": "https://anon:any@source.internal.pharaohtools.com/git/public/isophp",
   "keywords": [
     "PharaohTools",
     "uniter",
