@@ -12,9 +12,8 @@ var $ = require('jquery'),
     phpEngine = uniter.createEngine('PHP'),
     output = document.getElementById('output');
 
-$.holdReady(true);
-
-var file_require_string = 'require("/core/isophp.fephp") ; ' ;
+var file_require_string = 'require("/core/constants.fephp") ; ' ;
+file_require_string += 'require("/core/isophp.fephp") ; ' ;
 file_require_string += 'require("/core/init.fephp") ; ' ;
 file_require_string += 'require("/core/bootstrap.fephp") ; ' ;
 file_require_string += 'require("/core/index.fephp") ; ' ;
