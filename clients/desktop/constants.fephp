@@ -1,2 +1,2 @@
 <?php
-define('CURRENT_TARGET', "web") ;
+define('CURRENT_TARGET', "desktop") ;

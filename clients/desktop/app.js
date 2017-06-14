@@ -14,10 +14,11 @@ var $ = require('jquery'),
     phpEngine = uniter.createEngine('PHP'),
     output = document.getElementById('output');
 
-var file_require_string = "" ;
-mainFiles.forEach(function (filePath) {
-    file_require_string += 'require("'+filePath+'") ; ';
-});
+var file_require_string = 'require("/core/constants.fephp") ; ' ;
+file_require_string += 'require("/core/isophp.fephp") ; ' ;
+file_require_string += 'require("/core/init.fephp") ; ' ;
+file_require_string += 'require("/core/bootstrap.fephp") ; ' ;
+file_require_string += 'require("/core/index.fephp") ; ' ;
 
 function getFileData(path) {
     if (!hasOwn.call(fileData, path)) {
