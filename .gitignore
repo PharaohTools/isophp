@@ -1,5 +1,5 @@
-clients/electron/app/*
-clients/electron/core/*
+clients/mobile/www/app/*
+clients/mobile/www/core/*
 clients/web/app/*
 clients/web/core/*
 clients/desktop/app/*
