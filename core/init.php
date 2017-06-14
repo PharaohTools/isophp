@@ -1,6 +1,7 @@
 <?php
 
 \ISOPHP\core::$php = $php ;
+\ISOPHP\core::$file_index = $file_index ;
 \ISOPHP\js_core::$console = $console ;
 \ISOPHP\js_core::$window = $window ;
 \ISOPHP\js_core::$jQuery = $jQuery ;
