@@ -5,42 +5,49 @@
  */
 'use strict';
 
-
 var fs = require('fs'),
     globby = require('globby'),
     path = require('path'),
     files = globby.sync([
-        __dirname + '/php_classes/*.php',
-        __dirname + '/php_core/*.php'
+        __dirname + '/www/app/*.fephp',
+        __dirname + '/www/app/*/*.fephp',
+        __dirname + '/www/app/*/*/*.fephp',
+        __dirname + '/www/app/*/*/*.fephp',
+        __dirname + '/www/app/*/View/*.fephp',
+        __dirname + '/www/app/*/View/desktop/*.phptpl',
+        __dirname + '/www/app/*/View/mobile/*.phptpl',
+        __dirname + '/www/app/*/View/web/*.phptpl',
+        __dirname + '/www/app/*/View/*.phptpl',
+        __dirname + '/www/core/*.fephp',
+        __dirname + '/www/core/*/*.fephp',
+        __dirname + '/www/core/*/*/*.fephp',
+        __dirname + '/www/core/*/*/*/*.fephp'
     ]),
-    main_files = globby.sync([
-        __dirname + '/php_classes/*.php',
-        __dirname + '/php_core/*.php'
-    ]),
-    fileData = {},
-    mainFileData = [],
+    file_index = [],
+    file_data = {},
     root = __dirname + '/' ;
 
+console.log("filesData\n") ;
 files.forEach(function (filePath) {
     // fileData[path.relative(root, filePath)] = fs.readFileSync(filePath).toString();
     var short_path = filePath.replace(root, '') ;
+    short_path = short_path.replace('www/', '') ;
     console.log(short_path) ;
-    fileData[short_path] = fs.readFileSync(filePath).toString();
+    var one_file = fs.readFileSync(filePath).toString() ;
+    // console.log("File for: " + short_path + one_file) ;
+    file_data[short_path] = one_file ;
+    // console.log('fd', short_path, one_file) ;
+    file_index.push(short_path) ;
 });
 
-main_files.forEach(function (filePath) {
-    // fileData[path.relative(root, filePath)] = fs.readFileSync(filePath).toString();
-    var short_path = filePath.replace(root, '') ;
-    console.log(short_path) ;
-    mainFileData.push(short_path) ;
-});
-
+console.log("\n\nfile_data\n", file_data, JSON.stringify(file_data)) ;
 fs.writeFileSync(
-    __dirname + '/uniter_bundle/fileData.js',
-    'module.exports = ' + JSON.stringify(fileData) + ';'
+    __dirname + '/www/uniter_bundle/file_data.js',
+    'module.exports = ' + JSON.stringify(file_data) + ';'
 );
 
+console.log("\n\nfile_index\n", JSON.stringify(file_index)) ;
 fs.writeFileSync(
-    __dirname + '/uniter_bundle/mainFiles.js',
-    'module.exports = ' + JSON.stringify(mainFileData) + ';'
+    __dirname + '/www/uniter_bundle/file_index.js',
+    'module.exports = ' + JSON.stringify(file_index) + ';'
 );
