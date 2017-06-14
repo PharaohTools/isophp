@@ -2,6 +2,8 @@
 
 Namespace Core;
 
+use ISOPHP\core;
+
 class View {
 
     public static $page_vars ;
@@ -43,14 +45,36 @@ class View {
     public function loadViewFile($module, $viewFileName, $pageVars, $templateData=null) {
         \ISOPHP\js_core::$console->log('ViewFN', $viewFileName) ;
         self::$view_file_name = $viewFileName;
-         \ISOPHP\js_core::$console->log('View PageVars', $pageVars,  \ISOPHP\js_core::$window->location->hostname) ;
+         \ISOPHP\js_core::$console->log('View PageVars', $pageVars, $module, \ISOPHP\js_core::$window->location->hostname) ;
         self::$page_vars = $pageVars;
-        $view_path = '/app/'.$module.'/View/web/'.$viewFileName ;
-        $view_data = \ISOPHP\core::$php->file_get_contents($view_path) ;
-        include($view_path) ;
-        \ISOPHP\js_core::$console->log('View Template Function', self::$template) ;
-        # instead of require, can we do an ajax load, then an eval, or js echo or eval?
-        return $view_data ;
+
+        $view_client_path = '/app/'.$module.'/View/'.CURRENT_TARGET.'/'.$viewFileName ;
+        $view_default_path = '/app/'.$module.'/View/'.$viewFileName ;
+
+        if ($this->templateExists($view_client_path) === true) {
+            include($view_client_path) ;
+            return true ;
+        } else if ($this->templateExists($view_default_path) === true) {
+            include($view_default_path) ;
+            return true ;
+        } else {
+            \ISOPHP\js_core::$console->log("Unable to find view template $view_client_path or default $view_default_path") ;
+            return false ;
+        }
+    }
+
+    public function templateExists($path) {
+        $php = \ISOPHP\core::$php ;
+        if ($php->in_array($path, \ISOPHP\core::$file_index)){
+            return true ;
+        }
+        if ($php->substr($path, 0, 1) === '/') {
+            $noprefix = $php->substr($path, 1) ;
+            if ($php->in_array($noprefix, \ISOPHP\core::$file_index)){
+                return true ;
+            }
+        }
+        return false ;
     }
 
 }
