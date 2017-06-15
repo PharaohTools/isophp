@@ -38,6 +38,10 @@ function __autoload($classname) {
         $path = '/core/Core/Base/Model/Base.fephp' ;
         require_once ($path) ;
         return ;
+    } else if ($classname === 'Model\Navigate') {
+        $path = '/core/Core/Base/Model/Navigate.fephp' ;
+        require_once ($path) ;
+        return ;
     } else if ($classname === 'Info\Base') {
         $path = '/core/Core/Base/Info/Base.fephp' ;
         require_once ($path) ;
