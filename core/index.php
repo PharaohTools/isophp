@@ -26,6 +26,7 @@ $_ENV['bootstrap'] = $php->serialize($cleo_vars);
 $console->log($cleo_vars, $_ENV) ;
 
 $bootStrap = new \Core\BootStrap();
+\ISOPHP\core::$bootstrap = $bootStrap ;
 $argv_or_null = (isset($argv)) ? $argv : null ;
 $bootStrapParams = (isset($_ENV['bootstrap'])) ? $php->unserialize($_ENV['bootstrap']) : $argv_or_null ;
-$bootStrap->main($bootStrapParams);
+\ISOPHP\core::$bootstrap->main($bootStrapParams);
