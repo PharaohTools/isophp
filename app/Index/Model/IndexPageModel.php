@@ -12,4 +12,16 @@ class PageModel extends \Model\Base {
         return $page ;
     }
 
+    public static function bindButtons() {
+        return function () {
+            \ISOPHP\js_core::$console->log('Binding buttons') ;
+            $jQuery = \ISOPHP\js_core::$jQuery ;
+            $go_landing_page = $jQuery('#go-landing-page') ;
+            $go_landing_page->on('click', function () {
+                $navigate = new \Model\Navigate() ;
+                $navigate->route('LandingPage', 'show') ;
+            }) ;
+        } ;
+    }
+
 }
