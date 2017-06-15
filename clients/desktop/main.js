@@ -17,7 +17,7 @@ function createWindow () {
         // width: 600,
         width: 1000,
         height: 480,
-        icon: __dirname + '/assets/images/logo-pharaoh.png',
+        icon: __dirname + 'app/Default/Assets/images/tron_female_iso_logo.jpg',
         backgroundColor: '#000',
         frame: false,
         show: false
@@ -37,7 +37,7 @@ function createWindow () {
     }))
 
     // Open the DevTools.
-    mainElectronWindow.webContents.openDevTools()
+    // mainElectronWindow.webContents.openDevTools()
 
     // Emitted when the window is closed.
     mainElectronWindow.on('closed', function () {
