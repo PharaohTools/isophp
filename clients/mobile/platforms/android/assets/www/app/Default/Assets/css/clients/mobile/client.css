@@ -31,8 +31,8 @@ body {
 
 /* Portrait layout (default) */
 .app {
-    width: 90%;                   /* text area width */
-    padding: 380px 0px 0px 0px;     /* image height is 200px (bottom 20px are overlapped with text) */
+    width: 95%;                   /* text area width */
+    padding: 380px 0px 0px 15px;     /* image height is 200px (bottom 20px are overlapped with text) */
 }
 
 /* Landscape layout (with min-width) */
