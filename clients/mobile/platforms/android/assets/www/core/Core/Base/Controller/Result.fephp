@@ -9,5 +9,6 @@ class Result {
   public $control;
   public $type;
   public $view_control;
+  public $post_template = array();
 
 }

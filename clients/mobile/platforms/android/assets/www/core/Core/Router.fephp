@@ -9,6 +9,10 @@ class Router {
     private $availableRoutes = array() ;
 
     public function run($bootstrapParams) {
+
+        \ISOPHP\js_core::$console->log('Running router with the following') ;
+        \ISOPHP\js_core::$console->log($bootstrapParams) ;
+
         $this->bootstrapParams = $bootstrapParams;
         $this->setCurrentRoute();
         \ISOPHP\js_core::$console->log('route is:', $this->route) ;
@@ -17,9 +21,13 @@ class Router {
 
     private function setCurrentRoute() {
         $this->getAvailableRoutes();
+        \ISOPHP\js_core::$console->log('Router 1') ;
+
 //        $defaultRoute = $this->getDefaultRoute();
         $this->parseControllerAliases();
+        \ISOPHP\js_core::$console->log('Router 2') ;
         $this->setRouteController();
+        \ISOPHP\js_core::$console->log('Router 3') ;
 //        if ($this->route != $defaultRoute ) {
 //            $this->setRouteAction();
 //            $this->setRouteExtraParams(); }
@@ -37,7 +45,7 @@ class Router {
 //            $all_processed_arrays[$curKey] = array_merge($curValues, $routesAvailable[$curKey] ); }
 //          else {
 //            $all_processed_arrays[$curKey] = $routesAvailable[$curKey]; } } }
-      $this->availableRoutes = array("Index" => array("index"));
+      $this->availableRoutes = array("Index" => array("index"), "LandingPage" => array("show"));
     }
 
     private function getDefaultRoute() {
@@ -56,15 +64,19 @@ class Router {
     }
 
     private function setRouteController() {
+
+        \ISOPHP\js_core::$console->log('BSP 1', $this->bootstrapParams[1]) ;
         if (isset($this->bootstrapParams[1])) {
+            \ISOPHP\js_core::$console->log('AKE 1',  $this->availableRoutes ) ;
+            \ISOPHP\js_core::$console->log('AKE 2',  $this->availableRoutes, \ISOPHP\core::$php->array_key_exists( $this->bootstrapParams[1], $this->availableRoutes )) ;
             if (\ISOPHP\core::$php->array_key_exists( $this->bootstrapParams[1], $this->availableRoutes )) {
                 $this->route["control"] = $this->bootstrapParams[1] ;
             } else {
-                $this->route["control"] = $this->route = $this->getDefaultRoute();
+                $this->route = $this->getDefaultRoute();
             }
         }
         else {
-            $this->route["control"] = $this->route = $this->getDefaultRoute();
+            $this->route = $this->getDefaultRoute();
         }
 
     }

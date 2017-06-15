@@ -24,19 +24,15 @@ body {
     -webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
     -webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
     -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
-    background-color:#E4E4E4;
+    background-color: #000 !important;
+    background: #000 url(../../../images/iso-narrow.png) no-repeat bottom right ;
+    background-attachment: scroll;
 }
 
 /* Portrait layout (default) */
 .app {
-    position:absolute;             /* position in the center of the screen */
-    left:50%;
-    top:50%;
-    height:50px;                   /* text area height */
-    width:225px;                   /* text area width */
-    padding:180px 0px 0px 0px;     /* image height is 200px (bottom 20px are overlapped with text) */
-    margin:-115px 0px 0px -112px;  /* offset vertical: half of image height and text area height */
-                                   /* offset horizontal: half of text area width */
+    width: 90%;                   /* text area width */
+    padding: 380px 0px 0px 0px;     /* image height is 200px (bottom 20px are overlapped with text) */
 }
 
 /* Landscape layout (with min-width) */

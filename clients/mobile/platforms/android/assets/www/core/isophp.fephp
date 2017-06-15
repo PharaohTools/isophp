@@ -3,6 +3,7 @@
 Namespace ISOPHP ;
 
 class core {
+    public static $bootstrap ;
     public static $php ;
     public static $file_index ;
 }
