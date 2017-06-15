@@ -10,6 +10,7 @@ var $ = require('jquery'),
     hasOwn = {}.hasOwnProperty,
     uniter = require('uniter'),
     phpEngine = uniter.createEngine('PHP'),
+    file_index = require('./uniter_bundle/file_index.js'),
     output = document.getElementById('output');
 
 var file_require_string = 'require("/core/constants.fephp") ; ' ;
