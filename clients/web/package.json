@@ -6,7 +6,7 @@
   "description": "The ISO PHP Framework Website",
   "main": "main.js",
   "scripts": {
-    "build": "( ( (rm -rf uniter_bundle || true) && mkdir uniter_bundle ) && browserify app --standalone=isophp | uglifyjs > uniter_bundle/bundle.js)",
+    "build": "node fs && ( browserify app --standalone=isophp | uglifyjs > uniter_bundle/bundle.js)",
     "webpack": "webpack"
   },
   "repository": "https://anon:any@source.internal.pharaohtools.com/git/public/isophp",
