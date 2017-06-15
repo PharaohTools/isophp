@@ -1,0 +1,17 @@
+<?php
+
+\Core\View::$template = function() {
+    $html = '
+    <form id="pharaoh_form">
+        <div id="page_wrapper">
+            <h1>The Desktop Application Template</h1>
+        </div>
+    </form> ' ;
+
+    for ($i=0; $i<20; $i++) {
+        $html = $html . "Dave $i; " ;
+    }
+
+    return $html ;
+
+} ;

@@ -1,0 +1,12 @@
+<?php
+
+\Core\View::$template = function() {
+    $html = '
+    <form id="pharaoh_form">
+        <h1>The Web Application Landing Page</h1> ' ;
+
+    $html = $html . '<span id="go-index-page" class="btn btn-success">Home Page</span>' ;
+    $html = $html . '</form>' ;
+    return $html ;
+
+} ;
