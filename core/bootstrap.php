@@ -15,10 +15,11 @@ class BootStrap {
     }
 
     public function main($argv_or_boot_params_null) {
+        \ISOPHP\js_core::$console->log('bootstrap main', $argv_or_boot_params_null) ;
         $routeObject = new \Core\Router();
         $route = $routeObject->run($argv_or_boot_params_null);
         $emptyPageVars = array("messages"=>array(), "route"=>$route);
-//        \ISOPHP\js_core::$console->log($route, $emptyPageVars) ;
+        \ISOPHP\js_core::$console->log('current route is', $route, $emptyPageVars) ;
         $this->executeControl($route["control"], $emptyPageVars);
     }
 
@@ -33,6 +34,13 @@ class BootStrap {
 //            \ISOPHP\js_core::$console->log('View Class Name Is:', $viewClass) ;
             $view =  new $viewClass() ;
             $view->executeView($controlResult->view_control, $controlResult->view, $controlResult->page);
+            if (isset($controlResult->post_template)) {
+                \ISOPHP\js_core::$console->log('post template is set', $controlResult->post_template) ;
+                foreach ($controlResult->post_template as $post_template_method) {
+                    $post_template_method() ;
+                }
+
+            }
         }
         else if ($controlResult->type == "control") {
 //            \ISOPHP\js_core::$console->log('control res 2', $controlResult) ;
