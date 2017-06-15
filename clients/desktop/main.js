@@ -37,7 +37,7 @@ function createWindow () {
     }))
 
     // Open the DevTools.
-    // mainElectronWindow.webContents.openDevTools()
+    mainElectronWindow.webContents.openDevTools()
 
     // Emitted when the window is closed.
     mainElectronWindow.on('closed', function () {
