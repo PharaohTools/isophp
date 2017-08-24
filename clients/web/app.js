@@ -16,6 +16,7 @@ var $ = require('jquery'),
 var file_require_string = 'require("/core/constants.fephp") ; ' ;
 file_require_string += 'require("/core/isophp.fephp") ; ' ;
 file_require_string += 'require("/core/init.fephp") ; ' ;
+file_require_string += 'require("/core/WindowMessage.fephp") ; ' ;
 file_require_string += 'require("/core/bootstrap.fephp") ; ' ;
 file_require_string += 'require("/core/index.fephp") ; ' ;
 
@@ -59,11 +60,17 @@ var this_console = console ;
 var this_window = window ;
 var jQuery = $ ;
 
+var object_to_array = function (source_object) {
+    var arr = $.map(source_object, function(el) { return el });
+    return arr ;
+} ;
+
 phpEngine.expose(jQuery, 'jQuery');
 phpEngine.expose(this_window, 'window');
 phpEngine.expose(this_console, 'console');
 phpEngine.expose(php, 'php');
 phpEngine.expose(file_index, 'file_index');
+phpEngine.expose(object_to_array, 'object_to_array');
 
 // Write content HTML to the DOM
 phpEngine.getStdout().on('data', function (data) {

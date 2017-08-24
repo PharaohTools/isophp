@@ -1,2 +1,4 @@
 <?php
 define('CURRENT_TARGET', "web") ;
+define('IMAGE_ASSET_PREFIX', '/') ;
+define('CSS_ASSET_PREFIX', '/') ;

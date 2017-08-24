@@ -1,12 +1,12 @@
 {
-  "name": "iso_php_website",
+  "name": "iso_php_framework",
   "version": "1.0.0",
   "author": "Pharaoh Tools",
   "license": "none",
   "description": "The ISO PHP Framework Website",
   "main": "main.js",
   "scripts": {
-    "build": "node fs && ( browserify app --standalone=isophp | uglifyjs > uniter_bundle/bundle.js)",
+    "build": "node fs > /dev/null && ( browserify app --standalone=isophp | uglifyjs > uniter_bundle/bundle.js)",
     "webpack": "webpack"
   },
   "repository": "https://anon:any@source.internal.pharaohtools.com/git/public/isophp",
