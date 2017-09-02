@@ -1,17 +1,16 @@
 {
-    "name": "com.pharaohtools.phpmobile",
-    "displayName": "PHPMobile",
+    "name": "direct.digitalmoney.bank",
+    "displayName": "digitalmoneydirect",
     "version": "1.0.0",
     "description": "A sample Uniter PHP and Apache Cordova application.",
     "main": "index.js",
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1",
-        "build": "node fs && (browserify app --standalone=iso_php_website | uglifyjs > www/uniter_bundle/bundle.js)",
+        "build": "node fs > /dev/null && (browserify app --standalone=digitalmoneydirect | uglifyjs > www/uniter_bundle/bundle.js)",
         "webpack": "webpack"
     },
     "author": "Pharaoh Tools",
     "license": "none",
-    "repository": "https://anon:any@source.internal.pharaohtools.com/git/public/php_mobile",
+    "repository": "https://anon:any@source.internal.pharaohtools.com/git/public/digitalmoneydirect",
     "dependencies": {
         "async": "^2.1.4",
         "browserify": "^10.2.0",
@@ -30,7 +29,8 @@
         "uglifyify": "^3.0.1",
         "uniter": "^1.0",
         "uuid": "^3.0.0",
-        "webpack": "^1.9.7"
+        "webpack": "^1.9.7",
+        "whitelist": "^1.0.2"
     },
     "browserify": {
         "transform": [

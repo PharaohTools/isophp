@@ -24,10 +24,11 @@ var $ = require('jquery'),
 var file_require_string = 'require("/core/constants.fephp") ; ' ;
 file_require_string += 'require("/core/isophp.fephp") ; ' ;
 file_require_string += 'require("/core/init.fephp") ; ' ;
+file_require_string += 'require("/core/WindowMessage.fephp") ; ' ;
 file_require_string += 'require("/core/bootstrap.fephp") ; ' ;
 file_require_string += 'require("/core/index.fephp") ; ' ;
 
-console.log('mainfiles app js') ;
+console.log('mainfiles app js', 'file data', file_data, 'file index', file_index) ;
 
 function getFileData(path) {
     var pref_path = path.substr(1);

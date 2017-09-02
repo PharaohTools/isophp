@@ -1,2 +1,4 @@
 <?php
 define('CURRENT_TARGET', "mobile") ;
+define('IMAGE_ASSET_PREFIX', 'file:///android_asset/www/') ;
+define('CSS_ASSET_PREFIX', '') ;
