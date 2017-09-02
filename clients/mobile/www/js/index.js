@@ -29,7 +29,7 @@ var app = {
     onDeviceReady: function() {
         // this.receivedEvent('deviceready');
         // document.getElementById("app-loader").className = "";
-        // alert('bumfacing') ;
+        // alert('device ready notify') ;
     },
 
     // Update DOM on a Received Event
