@@ -18,6 +18,7 @@ var file_require_string = 'require("/core/constants.fephp") ; ' ;
 file_require_string += 'require("/core/electron.fephp") ; ' ;
 file_require_string += 'require("/core/isophp.fephp") ; ' ;
 file_require_string += 'require("/core/init.fephp") ; ' ;
+file_require_string += 'require("/core/WindowMessage.fephp") ; ' ;
 file_require_string += 'require("/core/bootstrap.fephp") ; ' ;
 file_require_string += 'require("/core/index.fephp") ; ' ;
 
