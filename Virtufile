@@ -11,7 +11,10 @@ class Virtufile extends VirtufileBase {
     }
 
     private function setConfig() {
-        require_once (__DIR__.DIRECTORY_SEPARATOR.'vars'.DIRECTORY_SEPARATOR.'vm.php') ;
+        $variables = array() ;
+        require (__DIR__.DIRECTORY_SEPARATOR.'vars'.DIRECTORY_SEPARATOR.'vm.php') ;
+//        var_dump('vfile vars', __DIR__.DIRECTORY_SEPARATOR.'vars'.DIRECTORY_SEPARATOR.'vm.php', $variables) ;
+
         $this->setDefaultConfig();
         $this->config["vm"]["name"] = strtolower(basename(dirname(__FILE__))) ;
         $this->config["vm"]["gui_mode"] = "gui" ;
@@ -42,7 +45,7 @@ class Virtufile extends VirtufileBase {
         $this->config["vm"]["shared_folders"][] =
             array(
                 "name" => "host_www",
-                "host_path" => getcwd().DS,
+                "host_path" => getcwd().DIRECTORY_SEPARATOR,
                 "guest_path" => "/var/www/hostshare/",
             ) ;
         # Provisioning
