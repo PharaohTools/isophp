@@ -1,0 +1,110 @@
+<?php
+
+Namespace Model ;
+
+class Virtufile extends VirtufileBase {
+
+    public $config ;
+
+    public function __construct() {
+        $this->setConfig();
+    }
+
+    private function setConfig() {
+        $this->setDefaultConfig();
+        $this->config["vm"]["name"] = strtolower(basename(dirname(__FILE__))) ;
+        $this->config["vm"]["gui_mode"] = "gui" ;
+        $this->config["vm"]["box"] = "pharaohubuntu14041amd64" ;
+        $this->config["vm"]["box"] = "standard_ubuntu" ;
+
+        $bu = '/opt/ptvirtualize/boxes/vanillaubuntu1604264bitserver.box' ;
+        $bu = 'https://www.pharaohtools.com/virtualize/boxes/vanillaubuntu1404264bitserveredition' ;
+        $this->config["vm"]["box_url"] = $bu ;
+        $this->config["vm"]["box"] = "vanillaubuntu1404264bitserveredition" ;
+
+        $random_port_suffix = '43' ;
+        $this->config["vm"]["cpus"] = "2" ;
+        $this->config["vm"]["memory"] = "8192" ;
+        $this->config["vm"]["graceful_halt_timeout"] = 15 ;
+        $this->config["vm"]["ssh_halt_timeout"] = 2 ;
+        $this->config["network"]["natpf1"][] = "{$this->config["vm"]["name"]}_guestssh,tcp,,22{$random_port_suffix},,22";
+        $this->config["network"]["natpf1"][] = "{$this->config["vm"]["name"]}_guestweb,tcp,,80{$random_port_suffix},,80";
+        $this->config["network"]["natpf1"][] = "{$this->config["vm"]["name"]}_guestmobile,tcp,,88{$random_port_suffix},,8000";
+
+        $this->config["ssh"]["driver"] = "native" ;
+        $this->config["ssh"]["user"] = "ptv" ;
+        $this->config["ssh"]["password"] = "ptv" ;
+        $this->config["ssh"]["target"] = "127.0.0.1" ;
+        $this->config["ssh"]["port"] = "22{$random_port_suffix}" ;
+
+        # Shared folder - This should map to the workstation environment vhost path parent...
+        $this->config["vm"]["shared_folders"][] =
+            array(
+                "name" => "host_www",
+                "host_path" => getcwd().DS,
+                "guest_path" => "/var/www/hostshare/",
+            ) ;
+        # Provisioning
+        $this->config["vm"]["provision"][] =
+            [   "provisioner" => "Shell",
+                "tool" => "shell",
+                "target" => "guest",
+                "default" => "MountShares" ];
+
+        $this->config["vm"]["provision"][] =
+            [   "provisioner" => "Shell",
+                "tool" => "shell",
+                "target" => "guest",
+                "default" => "PTConfigureInit" ];
+
+        $this->config["vm"]["provision"][] = $this->config["vm"]["provision_up_light"][] =
+            [   "provisioner" => "PharaohTools",
+                "tool" => "ptdeploy",
+                "target" => "host",
+                "script" => getcwd()."/build/ptd/add-hostfile-entry.dsl.php",
+                "params" => array("vars" => dirname(__FILE__)."/vars/vm.php"), ] ;
+
+        $this->config["vm"]["provision_destroy_post"][] =
+            [   "provisioner" => "PharaohTools", "tool" => "ptdeploy", "target" => "host",
+                "script" => getcwd()."/build/ptd/remove-hostfile-entry.dsl.php",
+                "params" => array("vars" => getcwd()."/vars/vm.php") ] ;
+
+        $this->config["vm"]["provision"][] =
+            [   "provisioner" => "PharaohTools",
+                "tool" => "ptconfigure",
+                "target" => "guest",
+                "script" => "/var/www/hostshare/build/ptc/development.dsl.php",
+                "params" => array('start-dir' => "/var/www/hostshare", 'vars' => '/var/www/hostshare/vars/vm.php') ] ;
+
+        $this->config["vm"]["provision"][] =
+            [   "provisioner" => "PharaohTools",
+                "tool" => "ptconfigure",
+                "target" => "guest",
+                "script" => "/var/www/hostshare/build/ptc/build-web-site-assets.dsl.php",
+                "params" => array('start-dir' => "/var/www/hostshare", 'vars' => '/var/www/hostshare/vars/vm.php') ] ;
+
+        $this->config["vm"]["provision"][] =
+            [   "provisioner" => "PharaohTools",
+                "tool" => "ptconfigure",
+                "target" => "guest",
+                "script" => "/var/www/hostshare/build/ptc/build-web-banking-assets.dsl.php",
+                "params" => array('start-dir' => "/var/www/hostshare", 'vars' => '/var/www/hostshare/vars/vm.php') ] ;
+
+        $this->config["vm"]["provision"][] =
+            [   "provisioner" => "PharaohTools",
+                "tool" => "ptconfigure",
+                "target" => "guest",
+                "script" => "/var/www/hostshare/build/ptc/build-server-web-application.dsl.php",
+                "params" => array('start-dir' => "/var/www/hostshare", 'vars' => '/var/www/hostshare/vars/vm.php') ] ;
+
+        $this->config["vm"]["post_up_message"] = "Your Digital Money Direct Virtualize Box has been brought up. 
+            You now have the following sites:\n\n
+                http://build.digitalmoney.vm:8043/ - Build Server\n
+                http://www.digitalmoney.vm:8043/ - Website\n
+                http://bank.digitalmoney.vm:8043/ - Banking Web Application\n
+                http://bank.digitalmoney.vm:8843/ - Banking Mobile Application Web Emulator \n
+                http://server.digitalmoney.vm:8043/ - Server App DB\n
+                http://server.digitalmoney.vm:8043/php_lite_admin/phpliteadmin.php - Server App DB Manager \n\n";
+    }
+
+}
