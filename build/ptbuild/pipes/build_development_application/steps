@@ -1,0 +1,17 @@
+{
+    "3516689872682579": {
+        "module": "Shell",
+        "steptype": "shelldata",
+        "data": "if [ \"$INCLUDE_WEB_ASSETS\" = \"on\" ] ; then\r\n    # For all Web Assets at Once\r\n    cd \/var\/www\/hostshare\/\r\n    sudo ptconfigure auto x --af=build\/ptc\/all-dev-web-assets.dsl.php --start-dir=\/var\/www\/hostshare --vars=vars\/vm.php\r\nfi\r\n"
+    },
+    "2995431567737701": {
+        "module": "Shell",
+        "steptype": "shelldata",
+        "data": "#!\/bin\/bash -ex\r\ncd \/var\/www\/hostshare\/\r\n\r\nif [ \"$INCLUDE_MOBILE_ASSETS\" == \"on\" ] ; then\r\n    # For the Mobile Build \r\n    echo \"Not deploying to a target\" ;\r\n    sudo ptconfigure auto x --af=build\/ptc\/build-mobile-assets.dsl.php --start-dir=\/var\/www\/hostshare --vars=vars\/vm.php ;\r\nfi\r\n\r\nif [ \"$INCLUDE_MOBILE_EMULATOR\" == \"on\" ] ; then\r\n    echo \"Deploying the Mobile Emulator Assets\" ;\r\n    sudo ptconfigure auto x --af=build\/ptc\/build-mobile-assets.dsl.php --start-dir=\/var\/www\/hostshare --vars=vars\/vm.php --emulator ;\r\nfi\r\n\r\nif [ \"$INCLUDE_MOBILE_WEBSERVER\" == \"on\" ] ; then\r\n    echo \"Deploying the Mobile Webserver Assets\" ;\r\n    sudo ptconfigure auto x --af=build\/ptc\/build-mobile-assets.dsl.php --start-dir=\/var\/www\/hostshare --vars=vars\/vm.php --webserver ;\r\nfi\r\n\r\nif [ \"$INCLUDE_MOBILE_ANDROID_APPLICATION\" == \"on\" ] ; then\r\n    # For the Mobile Build\r\n    echo \"Creating an APK file for Android\" ;\r\n    source \/var\/www\/hostshare\/build\/vm-android-shell.bash \r\n    source \/etc\/profile\r\n    if [ \"$MOBILE_APPLICATION_BACK_END_SERVER\" == \"LOCAL_VM\" ] ; then\r\n        sudo ptconfigure auto x --af=build\/ptc\/build-mobile-assets.dsl.php --start-dir=\/var\/www\/hostshare --vars=vars\/vm.php --create_apk_only --mobilebackend=local ;\r\n    fi\r\n    if [ \"$MOBILE_APPLICATION_BACK_END_SERVER\" == \"DEVCLOUD\" ] ; then\r\n        sudo ptconfigure auto x --af=build\/ptc\/build-mobile-assets.dsl.php --start-dir=\/var\/www\/hostshare --vars=vars\/vm.php --create_apk_only --mobilebackend=devcloud ;\r\n    fi\r\nfi\r\n\r\nif [ \"$INCLUDE_MOBILE_IOS_APPLICATION\" == \"on\" ] ; then\r\n    # For the Mobile Build\r\n    echo \"Creating an IPA file for iOS\" ;\r\n    sudo ptconfigure auto x --af=build\/ptc\/build-mobile-assets.dsl.php --start-dir=\/var\/www\/hostshare --vars=vars\/vm.php --create_ipa_only ;\r\nfi"
+    },
+    "9991777791910496": {
+        "module": "Shell",
+        "steptype": "shelldata",
+        "data": "if [ \"$INCLUDE_DESKTOP_ASSETS\" == \"on\" ] ; then\r\n    # For the Desktop Build\r\n    cd \/var\/www\/hostshare\/\r\n    sudo ptconfigure auto x --af=build\/ptc\/build-desktop-assets.dsl.php --start-dir=\/var\/www\/hostshare --vars=vars\/vm.php\r\nfi"
+    }
+}

@@ -1,0 +1,179 @@
+{
+    "BuildCleanup": {
+        "no_to_keep": ""
+    },
+    "BuildQueue": {
+        "enabled": "on",
+        "build_queue_max": "30",
+        "build_queue_delay": ""
+    },
+    "CopyOnSave": {
+        "enabled": "on",
+        "target_directory": "\/var\/www\/hostshare\/build\/ptbuild\/pipes\/"
+    },
+    "GoogleCalendar": {
+        "clientid": "",
+        "emailaddress": "",
+        "keyfilelocation": "",
+        "youremailid": ""
+    },
+    "Hipchat": {
+        "Token": "",
+        "Room Id or Name": "",
+        "From": ""
+    },
+    "Ironmq": {
+        "token": "",
+        "projectid": "",
+        "queuename": ""
+    },
+    "Logstash": {
+        "ipaddress": "",
+        "port": ""
+    },
+    "Mongodb": {
+        "host": "",
+        "dbname": "",
+        "collection": "",
+        "path": "",
+        "title": ""
+    },
+    "PipeRunParameters": {
+        "piperun_parameters_enabled": "on",
+        "parameters": {
+            "13031264485880656": {
+                "param_type": "boolean",
+                "param_original_options": "text,boolean,textarea,options",
+                "param_name": "INCLUDE_WEB_ASSETS",
+                "param_default": "",
+                "param_textarea_default": "",
+                "param_boolean_default": "on",
+                "param_options": "",
+                "param_description": "Select this to include rebuilding of the Web Assets "
+            },
+            "13477723465434499": {
+                "param_type": "boolean",
+                "param_original_options": "text,boolean,textarea,options",
+                "param_name": "INCLUDE_DESKTOP_ASSETS",
+                "param_default": "",
+                "param_textarea_default": "",
+                "param_boolean_default": "on",
+                "param_options": "",
+                "param_description": "Select this to include rebuilding of the Desktop Assets "
+            },
+            "8484146419219623": {
+                "param_type": "boolean",
+                "param_original_options": "text,boolean,textarea,options",
+                "param_name": "INCLUDE_MOBILE_ASSETS",
+                "param_default": "",
+                "param_textarea_default": "",
+                "param_boolean_default": "on",
+                "param_options": "",
+                "param_description": "Select this to include rebuilding of the Desktop Assets "
+            },
+             "7981038326794189": {
+                 "param_type": "options",
+                 "param_original_options": "text,boolean,textarea,options",
+                 "param_name": "MOBILE_APPLICATION_BACK_END_SERVER",
+                 "param_default": "LOCAL_VM",
+                 "param_textarea_default": "",
+                 "param_options": "LOCAL_VM\r\nDEVCLOUD",
+                 "param_description": "This is where to choose the location of the Back End Server"
+             },
+            "47162450023914995": {
+                "param_type": "boolean",
+                "param_original_options": "text,boolean,textarea,options",
+                "param_name": "INCLUDE_MOBILE_EMULATOR",
+                "param_default": "",
+                "param_textarea_default": "",
+                "param_options": "",
+                "param_description": "Use this to deploy your application to the mobile emulator after it has been built"
+            },
+            "12915223326134639": {
+                "param_type": "boolean",
+                "param_original_options": "text,boolean,textarea,options",
+                "param_name": "INCLUDE_MOBILE_WEBSERVER",
+                "param_default": "",
+                "param_textarea_default": "",
+                "param_options": "",
+                "param_description": "Use this to deploy your application to a mobile web server after it has been built"
+            },
+            "8349419383350889": {
+                "param_type": "boolean",
+                "param_original_options": "text,boolean,textarea,options",
+                "param_name": "INCLUDE_MOBILE_ANDROID_APPLICATION",
+                "param_default": "",
+                "param_textarea_default": "",
+                "param_options": "",
+                "param_description": "Use this to Build an Android APK as a Release"
+            },
+            "8611573566983852": {
+                "param_type": "boolean",
+                "param_original_options": "text,boolean,textarea,options",
+                "param_name": "INCLUDE_MOBILE_IOS_APPLICATION",
+                "param_default": "",
+                "param_textarea_default": "",
+                "param_options": "",
+                "param_description": "Use this to Build an iOS IPA File as a Release"
+            }
+        }
+    },
+    "PollSCM": {
+        "git_repository_url": "",
+        "git_branch": "",
+        "git_privkey_path": "",
+        "cron_string": ""
+    },
+    "PublishReleases": {
+        "enabled": "on",
+        "allow_public": "on",
+        "custom_release": {
+            "3506207020156906": {
+                "release_title": "Desktop Application for Linux x64",
+                "release_file": "\/var\/www\/hostshare\/clients\/desktop\/exe\/DigitalMoneyDirect-linux-x64\/DigitalMoneyDirect",
+                "image": "",
+                "allow_public": "on"
+            },
+            "9868886922805767": {
+                "release_title": "Desktop Application for Windows",
+                "release_file": "\/var\/www\/hostshare\/clients\/desktop\/exe\/DigitalMoneyDirect-windows\/DigitalMoneyDirect.exe",
+                "image": "",
+                "allow_public": "on"
+            },
+            "8620097775563362": {
+                "release_title": "Mobile Application for Android",
+                "release_file": "\/var\/www\/hostshare\/clients\/mobile\/platforms\/android\/build\/outputs\/apk\/android-debug.apk",
+                "image": "",
+                "allow_public": "on"
+            },
+            "7347037031201154": {
+                "release_title": "Mobile Application for iOS",
+                "release_file": "\/var\/www\/hostshare\/clients\/mobile\/platforms\/android\/build\/outputs\/ipa\/ios-release-unsigned.apk",
+                "image": "",
+                "allow_public": "on"
+            }
+        }
+    },
+    "SCMPublishOnSave": {
+        "target_repository": ""
+    },
+    "SSH": {
+        "username": "",
+        "password": "",
+        "ipaddress": "",
+        "sourcefilepath": "",
+        "destinationfilepath": ""
+    },
+    "SVN": {
+        "Repository": "",
+        "TargetPath": "",
+        "Username": "",
+        "Password": ""
+    },
+    "ScheduledBuild": {
+        "cron_string": ""
+    },
+    "SendEmail": {
+        "send_postbuild_email_address": ""
+    }
+}

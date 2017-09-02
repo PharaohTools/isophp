@@ -1,0 +1,12 @@
+{
+    "project-name": "Build Development Application",
+    "project-slug": "build_development_application",
+    "project-description": "Rebuild the Assets for the any of the components of the application. Web Client Application, Web Server Application, Mobile Applications and Desktop Applications.\r\n",
+    "default-scm-url": null,
+    "email-id": null,
+    "parameter-status": null,
+    "parameter-name": null,
+    "parameter-dvalue": null,
+    "parameter-input": "",
+    "parameter-description": null
+}
