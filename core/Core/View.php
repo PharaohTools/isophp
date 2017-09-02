@@ -2,8 +2,6 @@
 
 Namespace Core;
 
-use ISOPHP\core;
-
 class View {
 
     public static $page_vars ;
@@ -11,6 +9,7 @@ class View {
     public static $template ;
 
     public function executeView($module, $view, Array $viewVars) {
+        // \ISOPHP\js_core::$console->log('executing view', $module, $view, $viewVars) ;
         $ep = (isset($viewVars["route"]["extraParams"])) ? $viewVars["route"]["extraParams"] : array() ;
         $baseMod = new \Model\Base($ep) ;
         $viewVars["params"] = $baseMod->params ;
@@ -23,18 +22,20 @@ class View {
             if ($vvLayoutCond1) { $viewVars["layout"] = "DefaultHTML" ; }
             else if ($vvLayoutCond2) { $viewVars["layout"] = "blank" ; }
             else { $viewVars["layout"] = "blank" ; } }
+        // \ISOPHP\js_core::$console->log('loading template', $module, $view, $viewVars) ;
         $templateData = $this->loadTemplate ($module, $view, $viewVars) ;
         $this->display($templateData) ;
     }
 
     protected function display($templateData) {
-        \ISOPHP\js_core::$console->log('Default Display Method', $templateData) ;
+        // \ISOPHP\js_core::$console->log('Default Display Method', $templateData) ;
     }
 
     public function loadTemplate ($module, $view, Array $pageVars) {
         $viewFileName = \ISOPHP\core::$php->ucfirst($view)  ;
+        // \ISOPHP\js_core::$console->log('before load template', $module, $view, $pageVars) ;
         $lvf = $this->loadViewFile($module, $viewFileName, $pageVars) ;
-        \ISOPHP\js_core::$console->log('Template loaded', $lvf) ;
+        // \ISOPHP\js_core::$console->log('Template loaded', $lvf, $view) ;
         if ($lvf !== false) {
             return $lvf; }
         else {
@@ -45,11 +46,14 @@ class View {
     public function loadViewFile($module, $viewFileName, $pageVars, $templateData=null) {
         \ISOPHP\js_core::$console->log('ViewFN', $viewFileName) ;
         self::$view_file_name = $viewFileName;
-         \ISOPHP\js_core::$console->log('View PageVars', $pageVars, $module, \ISOPHP\js_core::$window->location->hostname) ;
+        \ISOPHP\js_core::$console->log('View PageVars', $pageVars, $module, \ISOPHP\js_core::$window->location->hostname) ;
         self::$page_vars = $pageVars;
 
         $view_client_path = '/app/'.$module.'/View/'.CURRENT_TARGET.'/'.$viewFileName ;
         $view_default_path = '/app/'.$module.'/View/'.$viewFileName ;
+        \ISOPHP\js_core::$console->log("Current Target is ".CURRENT_TARGET) ;
+        \ISOPHP\js_core::$console->log("View Looking for $view_client_path") ;
+        \ISOPHP\js_core::$console->log("And looking for $view_default_path") ;
 
         if ($this->templateExists($view_client_path) === true) {
             include($view_client_path) ;
@@ -58,7 +62,7 @@ class View {
             include($view_default_path) ;
             return true ;
         } else {
-            \ISOPHP\js_core::$console->log("Unable to find view template $view_client_path or default $view_default_path") ;
+             \ISOPHP\js_core::$console->log("Unable to find view template $view_client_path or default $view_default_path") ;
             return false ;
         }
     }

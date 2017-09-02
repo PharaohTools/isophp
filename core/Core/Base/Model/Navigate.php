@@ -4,10 +4,10 @@ namespace Model;
 
 class Navigate {
 
-    public function route($control = null, $action = null) {
+    public function route($control = null, $action = null, $params, $new_url = null) {
 
-        \ISOPHP\js_core::$console->log('In the applications navigation method') ;
-        \ISOPHP\js_core::$console->log($_REQUEST, $_SERVER, $control, $action) ;
+         \ISOPHP\js_core::$console->log('In the applications navigation method') ;
+         \ISOPHP\js_core::$console->log($_REQUEST, $_SERVER, $control, $action) ;
 
         $route_set[] = isset($control) ;
         $route_set[] = isset($action) ;
@@ -25,14 +25,26 @@ class Navigate {
         $cleo_vars[2] = $action;
         foreach($_REQUEST as $post_key => $post_var) {
             if (!\ISOPHP\core::$php->in_array($post_key, array('control', 'action'))) {
-                $cleo_vars[] = "--$post_key=$_REQUEST[$post_key]" ; } }
+                $cleo_vars[] = "--$post_key=$post_var" ; } }
         $_ENV['bootstrap'] = \ISOPHP\core::$php->serialize($cleo_vars);
 
-        \ISOPHP\js_core::$console->log($cleo_vars, $_ENV) ;
+        \ISOPHP\js_core::$console->log('Navigate', $cleo_vars, $_ENV, $params) ;
+
+        if (CURRENT_TARGET === 'web') {
+            if ($new_url !== null) {
+                $ob = array() ;
+                \ISOPHP\js_core::$console->log('Navigate URL Change', $ob, $new_url) ;
+                $first_char = \ISOPHP\core::$php->substr($new_url, 0, 1) ;
+                if ($first_char !== '/') {
+                    $new_url = '/'.$new_url ;
+                }
+                \ISOPHP\js_core::$window->history->replaceState($ob, '', $new_url);
+            }
+        }
 
         $argv_or_null = null ;
         $bootStrapParams = (isset($_ENV['bootstrap'])) ? \ISOPHP\core::$php->unserialize($_ENV['bootstrap']) : $argv_or_null ;
-        \ISOPHP\core::$bootstrap->main($bootStrapParams);
+        \ISOPHP\core::$bootstrap->main($bootStrapParams, $params);
 
     }
     

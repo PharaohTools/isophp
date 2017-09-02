@@ -29,4 +29,4 @@ $bootStrap = new \Core\BootStrap();
 \ISOPHP\core::$bootstrap = $bootStrap ;
 $argv_or_null = (isset($argv)) ? $argv : null ;
 $bootStrapParams = (isset($_ENV['bootstrap'])) ? $php->unserialize($_ENV['bootstrap']) : $argv_or_null ;
-\ISOPHP\core::$bootstrap->main($bootStrapParams);
+\ISOPHP\core::$bootstrap->main($bootStrapParams, array());

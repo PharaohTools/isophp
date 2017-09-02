@@ -10,42 +10,32 @@ class Router {
 
     public function run($bootstrapParams) {
 
-        \ISOPHP\js_core::$console->log('Running router with the following') ;
-        \ISOPHP\js_core::$console->log($bootstrapParams) ;
+        // \ISOPHP\js_core::$console->log('Running router with the following') ;
+        // \ISOPHP\js_core::$console->log($bootstrapParams) ;
 
         $this->bootstrapParams = $bootstrapParams;
         $this->setCurrentRoute();
-        \ISOPHP\js_core::$console->log('route is:', $this->route) ;
+        // \ISOPHP\js_core::$console->log('route is:', $this->route) ;
         return $this->route ;
     }
 
     private function setCurrentRoute() {
         $this->getAvailableRoutes();
-        \ISOPHP\js_core::$console->log('Router 1') ;
-
-//        $defaultRoute = $this->getDefaultRoute();
+        // \ISOPHP\js_core::$console->log('Router 1') ;
         $this->parseControllerAliases();
-        \ISOPHP\js_core::$console->log('Router 2') ;
+        // \ISOPHP\js_core::$console->log('Router 2') ;
         $this->setRouteController();
-        \ISOPHP\js_core::$console->log('Router 3') ;
-//        if ($this->route != $defaultRoute ) {
-//            $this->setRouteAction();
-//            $this->setRouteExtraParams(); }
+        // \ISOPHP\js_core::$console->log('Router 3') ;
+        $this->setRouteAction();
+        // \ISOPHP\js_core::$console->log('Router 4') ;
+        $this->setRouteExtraParams();
+        // \ISOPHP\js_core::$console->log('Router 5') ;
     }
 
     private function getAvailableRoutes() {
-//      $allInfoObjects = \Core\AutoLoader::getInfoObjects() ;
-//      $all_processed_arrays = array();
-//      foreach ($allInfoObjects as $infoObject) {
-//        $curKeys = array_keys($infoObject->routesAvailable());
-//        $routesAvailable = $infoObject->routesAvailable();
-//        foreach ($curKeys as $curKey) {
-//          if (isset($all_processed_arrays[$curKey]) ) {
-//            $curValues = $all_processed_arrays[$curKey];
-//            $all_processed_arrays[$curKey] = array_merge($curValues, $routesAvailable[$curKey] ); }
-//          else {
-//            $all_processed_arrays[$curKey] = $routesAvailable[$curKey]; } } }
-      $this->availableRoutes = array("Index" => array("index"), "LandingPage" => array("show"));
+      $this->availableRoutes = array(
+          "Index" => array("index"),
+      );
     }
 
     private function getDefaultRoute() {
@@ -65,10 +55,10 @@ class Router {
 
     private function setRouteController() {
 
-        \ISOPHP\js_core::$console->log('BSP 1', $this->bootstrapParams[1]) ;
+        // \ISOPHP\js_core::$console->log('BSP 1', $this->bootstrapParams[1]) ;
         if (isset($this->bootstrapParams[1])) {
-            \ISOPHP\js_core::$console->log('AKE 1',  $this->availableRoutes ) ;
-            \ISOPHP\js_core::$console->log('AKE 2',  $this->availableRoutes, \ISOPHP\core::$php->array_key_exists( $this->bootstrapParams[1], $this->availableRoutes )) ;
+            // \ISOPHP\js_core::$console->log('AKE 1',  $this->availableRoutes ) ;
+            // \ISOPHP\js_core::$console->log('AKE 2',  $this->availableRoutes, \ISOPHP\core::$php->array_key_exists( $this->bootstrapParams[1], $this->availableRoutes )) ;
             if (\ISOPHP\core::$php->array_key_exists( $this->bootstrapParams[1], $this->availableRoutes )) {
                 $this->route["control"] = $this->bootstrapParams[1] ;
             } else {
@@ -83,16 +73,27 @@ class Router {
 
     private function setRouteAction() {
         $actionSet = isset($this->bootstrapParams[2]) ;
+        // \ISOPHP\js_core::$console->log('SRA 1', $actionSet) ;
         if ($actionSet) {
+            // \ISOPHP\js_core::$console->log('SRA 6', $this->bootstrapParams[2], $this->bootstrapParams[1],  $this->availableRoutes[$this->bootstrapParams[1]]) ;
             $correctAct = \ISOPHP\core::$php->in_array( $this->bootstrapParams[2], $this->availableRoutes[$this->bootstrapParams[1]] ) ;
         } else {
             $correctAct = false ;
         }
-        if ($actionSet && $correctAct) {
+        // \ISOPHP\js_core::$console->log('SRA 2', $correctAct) ;
+        if ($actionSet == true && $correctAct == true) {
             $this->route["action"] = $this->bootstrapParams[2] ;
-        } else {
-            $this->route["action"] = $this->route = $this->getDefaultRoute();
+            // \ISOPHP\js_core::$console->log('SRA 4', $this->route["action"]) ;
         }
+        if ($actionSet !== true) {
+            $this->route["action"] = $this->getDefaultRoute() ;
+            // \ISOPHP\js_core::$console->log('SRA 5', $this->route["action"]) ;
+        }
+        if ($correctAct !== true) {
+            $this->route["action"] = $this->getDefaultRoute() ;
+            // \ISOPHP\js_core::$console->log('SRA 5', $this->route["action"]) ;
+        }
+        // \ISOPHP\js_core::$console->log('SRA 3', $this->route["action"]) ;
     }
 
     private function setRouteExtraParams() {
