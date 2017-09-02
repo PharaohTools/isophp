@@ -1,5 +1,6 @@
 clients/mobile/www/app/*
 clients/mobile/www/core/*
+clients/mobile/platforms/*
 clients/web/app/*
 clients/web/core/*
 clients/desktop/app/*
