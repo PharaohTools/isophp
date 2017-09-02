@@ -1,6 +1,6 @@
 {
-    "name": "uniter/uniter-jquery",
-    "description": "Demo of UI interaction with jQuery+Uniter",
+    "name": "pharaohtools/isophp",
+    "description": "ISO PHP Framework",
     "autoload": {
         "psr-0": {
             "": "php/src/"
@@ -15,6 +15,10 @@
         {
             "name": "Dan Phillimore",
             "email": "dan@ovms.co"
+        },
+        {
+            "name": "Pharaoh Tools",
+            "email": "dave@pharaohtools.com"
         }
     ]
 }

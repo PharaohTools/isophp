@@ -1,9 +1,10 @@
 {
-  "name": "iso_php_framework",
+  "name": "isophp",
+  "displayName": "isophp",
   "version": "1.0.0",
   "author": "Pharaoh Tools",
   "license": "none",
-  "description": "The ISO PHP Framework Website",
+  "description": "The ISO PHP Framework Web Client Applicatiion",
   "main": "main.js",
   "scripts": {
     "build": "node fs > /dev/null && ( browserify app --standalone=isophp | uglifyjs > uniter_bundle/bundle.js)",

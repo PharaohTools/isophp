@@ -1,6 +1,6 @@
 {
-    "name": "electron-php-isophp",
-    "description": "Electron PHP with ISOPHP",
+    "name": "pharaohtools/isophp",
+    "description": "ISO PHP Framework",
     "autoload": {
         "psr-0": {
             "": "php/src/"
@@ -10,6 +10,15 @@
         "phpunit/phpunit": "^4.6",
         "querypath/QueryPath": "~3"
     },
-    "license": "none",
-    "author": "PharaohTools"
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Dan Phillimore",
+            "email": "dan@ovms.co"
+        },
+        {
+            "name": "Pharaoh Tools",
+            "email": "dave@pharaohtools.com"
+        }
+    ]
 }

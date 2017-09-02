@@ -1,16 +1,16 @@
 {
-    "name": "direct.digitalmoney.bank",
-    "displayName": "digitalmoneydirect",
+    "name": "isophp",
+    "displayName": "isophp",
     "version": "1.0.0",
-    "description": "A sample Uniter PHP and Apache Cordova application.",
+    "description": "The ISO PHP Mobile client",
     "main": "index.js",
     "scripts": {
-        "build": "node fs > /dev/null && (browserify app --standalone=digitalmoneydirect | uglifyjs > www/uniter_bundle/bundle.js)",
+        "build": "browserify app --standalone=isophp | uglifyjs > www/uniter_bundle/bundle.js",
         "webpack": "webpack"
     },
     "author": "Pharaoh Tools",
     "license": "none",
-    "repository": "https://anon:any@source.internal.pharaohtools.com/git/public/digitalmoneydirect",
+    "repository": "https://anon:any@source.internal.pharaohtools.com/git/public/isophp",
     "dependencies": {
         "async": "^2.1.4",
         "browserify": "^10.2.0",
