@@ -9,4 +9,6 @@ clients/desktop/exe
 clients/*/vendor
 clients/*/uniter_bundle
 clients/*/node_modules
+clients/*/vendor
 clients/*/composer.lock
+clients/*/package-lock.json
