@@ -14,6 +14,7 @@ var $ = require('jquery'),
     output = document.getElementById('output');
 
 var file_require_string = 'require("/core/constants.fephp") ; ' ;
+file_require_string += 'require("/core/app_vars.fephp") ; ' ;
 file_require_string += 'require("/core/isophp.fephp") ; ' ;
 file_require_string += 'require("/core/init.fephp") ; ' ;
 file_require_string += 'require("/core/WindowMessage.fephp") ; ' ;
