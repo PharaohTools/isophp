@@ -11,6 +11,7 @@ class Virtufile extends VirtufileBase {
     }
 
     private function setConfig() {
+        require_once (__DIR__.DIRECTORY_SEPARATOR.'vars'.DIRECTORY_SEPARATOR.'vm.php') ;
         $this->setDefaultConfig();
         $this->config["vm"]["name"] = strtolower(basename(dirname(__FILE__))) ;
         $this->config["vm"]["gui_mode"] = "gui" ;
@@ -22,7 +23,7 @@ class Virtufile extends VirtufileBase {
         $this->config["vm"]["box_url"] = $bu ;
         $this->config["vm"]["box"] = "vanillaubuntu1404264bitserveredition" ;
 
-        $random_port_suffix = '43' ;
+        $random_port_suffix = '76' ;
         $this->config["vm"]["cpus"] = "2" ;
         $this->config["vm"]["memory"] = "8192" ;
         $this->config["vm"]["graceful_halt_timeout"] = 15 ;
@@ -80,31 +81,24 @@ class Virtufile extends VirtufileBase {
             [   "provisioner" => "PharaohTools",
                 "tool" => "ptconfigure",
                 "target" => "guest",
-                "script" => "/var/www/hostshare/build/ptc/build-web-site-assets.dsl.php",
+                "script" => "/var/www/hostshare/build/ptc/build-web-client-application.dsl.php",
                 "params" => array('start-dir' => "/var/www/hostshare", 'vars' => '/var/www/hostshare/vars/vm.php') ] ;
 
         $this->config["vm"]["provision"][] =
             [   "provisioner" => "PharaohTools",
                 "tool" => "ptconfigure",
                 "target" => "guest",
-                "script" => "/var/www/hostshare/build/ptc/build-web-banking-assets.dsl.php",
+                "script" => "/var/www/hostshare/build/ptc/build-web-server-application.dsl.php",
                 "params" => array('start-dir' => "/var/www/hostshare", 'vars' => '/var/www/hostshare/vars/vm.php') ] ;
 
-        $this->config["vm"]["provision"][] =
-            [   "provisioner" => "PharaohTools",
-                "tool" => "ptconfigure",
-                "target" => "guest",
-                "script" => "/var/www/hostshare/build/ptc/build-server-web-application.dsl.php",
-                "params" => array('start-dir' => "/var/www/hostshare", 'vars' => '/var/www/hostshare/vars/vm.php') ] ;
-
-        $this->config["vm"]["post_up_message"] = "Your Digital Money Direct Virtualize Box has been brought up. 
-            You now have the following sites:\n\n
-                http://build.digitalmoney.vm:8043/ - Build Server\n
-                http://www.digitalmoney.vm:8043/ - Website\n
-                http://bank.digitalmoney.vm:8043/ - Banking Web Application\n
-                http://bank.digitalmoney.vm:8843/ - Banking Mobile Application Web Emulator \n
-                http://server.digitalmoney.vm:8043/ - Server App DB\n
-                http://server.digitalmoney.vm:8043/php_lite_admin/phpliteadmin.php - Server App DB Manager \n\n";
+        $this->config["vm"]["post_up_message"] = "Your ISOPHP Virtualize Box has been brought up. 
+            You now have the following urls:\n\n
+                http://build.{$variables['domain']}:8076/ - Build Server\n
+                http://www.{$variables['domain']}:8076/ - Website\n
+                http://bank.{$variables['domain']}:8076/ - Banking Web Application\n
+                http://bank.{$variables['domain']}:8876/ - Banking Mobile Application Web Emulator \n
+                http://server.{$variables['domain']}:8076/ - Server App DB\n
+                http://server.{$variables['domain']}:8076/php_lite_admin/phpliteadmin.php - Server App DB Manager \n\n";
     }
 
 }
