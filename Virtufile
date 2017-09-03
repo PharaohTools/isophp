@@ -94,14 +94,13 @@ class Virtufile extends VirtufileBase {
                 "script" => "/var/www/hostshare/build/ptc/build-web-server-application.dsl.php",
                 "params" => array('start-dir' => "/var/www/hostshare", 'vars' => '/var/www/hostshare/vars/vm.php') ] ;
 
-        $this->config["vm"]["post_up_message"] = "Your ISOPHP Virtualize Box has been brought up. 
+        $description = (isset($variables['description'])) ? "\n\n{$variables['description']}\n\n" : '' ;
+        $this->config["vm"]["post_up_message"] = "Your ISOPHP Virtualize Box has been brought up. $description
             You now have the following urls:\n\n
                 http://build.{$variables['domain']}:8076/ - Build Server\n
-                http://www.{$variables['domain']}:8076/ - Website\n
-                http://bank.{$variables['domain']}:8076/ - Banking Web Application\n
-                http://bank.{$variables['domain']}:8876/ - Banking Mobile Application Web Emulator \n
-                http://server.{$variables['domain']}:8076/ - Server App DB\n
-                http://server.{$variables['domain']}:8076/php_lite_admin/phpliteadmin.php - Server App DB Manager \n\n";
+                http://www.{$variables['domain']}:8076/ - Web Client Application\n
+                http://www.{$variables['domain']}:8876/ - Mobile Application Web Emulator \n
+                http://server.{$variables['domain']}:8076/ - Web Server Application\n\n";
     }
 
 }
