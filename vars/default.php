@@ -1,6 +1,7 @@
 <?php
 
-$variables['application_slug'] = 'iso_php' ;
+$variables['application_slug'] = 'isophp' ;
+$variables['description'] = '' ;
 $variables['subdomain'] = 'www' ;
 $variables['webclientsubdomain'] = 'www' ;
 $variables['server_subdomain'] = 'server' ;
