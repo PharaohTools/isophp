@@ -15,17 +15,16 @@ require("core/index.fephp") ;
 
 <!DOCTYPE html>
 <html>
-
     <head>
         <meta charset="UTF-8" />
         <title></title>
-        <link rel="stylesheet" href="app/ISOPHPExample/Assets/css/animate.css">
-        <link rel="stylesheet" href="app/ISOPHPExample/Assets/css/icomoon.css">
-        <link rel="stylesheet" href="app/ISOPHPExample/Assets/css/bootstrap.css">
-        <link rel="stylesheet" href="app/ISOPHPExample/Assets/css/owl.carousel.min.css">
-        <link rel="stylesheet" href="app/ISOPHPExample/Assets/css/owl.theme.default.min.css">
-        <link rel="stylesheet" href="app/ISOPHPExample/Assets/css/style.css">
-        <script src="app/ISOPHPExample/Assets/js/modernizr-2.6.2.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="app/Default/Assets/css/loader.css">
+        <link rel="stylesheet" type="text/css" href="app/Default/Assets/css/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="app/Default/Assets/css/bootstrap-theme.css">
+        <link rel="stylesheet" type="text/css" href="app/Default/Assets/css/font-awesome.min.css">
+        <link rel="stylesheet" type="text/css" href="app/Default/Assets/css/jquery-ui.css">
+        <link rel="stylesheet" type="text/css" href="app/Default/Assets/css/default.css">
+        <link rel="stylesheet" type="text/css" href="app/Default/Assets/css/clients/web/client.css">
     </head>
 
     <body class="drag_body">
