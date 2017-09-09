@@ -2,3 +2,9 @@
 define('CURRENT_TARGET', "web") ;
 define('IMAGE_ASSET_PREFIX', '/') ;
 define('CSS_ASSET_PREFIX', '/') ;
+
+if (ISOPHP_CLIENT_SERVER_SIDE === true) {
+    define('REQUIRE_PREFIX', dirname(__DIR__)) ;
+} else {
+    define('REQUIRE_PREFIX', '') ;
+}

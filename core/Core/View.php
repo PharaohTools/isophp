@@ -7,6 +7,7 @@ class View {
     public static $page_vars ;
     public static $view_file_name ;
     public static $template ;
+    public static $server_template ;
 
     public function executeView($module, $view, Array $viewVars) {
         // \ISOPHP\js_core::$console->log('executing view', $module, $view, $viewVars) ;
@@ -59,12 +60,36 @@ class View {
             include($view_client_path) ;
             return true ;
         } else if ($this->templateExists($view_default_path) === true) {
-            include($view_default_path) ;
+            include(REQUIRE_PREFIX.$view_default_path) ;
             return true ;
         } else {
              \ISOPHP\js_core::$console->log("Unable to find view template $view_client_path or default $view_default_path") ;
             return false ;
         }
+    }
+
+    public static function parse_view_template($template) {
+        if ($template === null) {
+            $template = self::$template ;
+        }
+        if (ISOPHP_EXECUTION_ENVIRONMENT === 'UNITER') {
+            return $template() ;
+        }
+        if (ISOPHP_EXECUTION_ENVIRONMENT === 'ZEND') {
+            return call_user_func($template) ;
+        }
+    }
+
+    public static function execute_view_template($template_element_id, $template_data) {
+        if (ISOPHP_EXECUTION_ENVIRONMENT === 'UNITER') {
+            $jQuery =  \ISOPHP\js_core::$jQuery ;
+            $jQuery('#template')->html($template_data) ;
+            $jQuery('.app-loader')->css('display', 'none') ;
+        }
+        if (ISOPHP_EXECUTION_ENVIRONMENT === 'ZEND') {
+            self::$server_template = $template_data ;
+        }
+        return true ;
     }
 
     public function templateExists($path) {

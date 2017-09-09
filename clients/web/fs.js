@@ -41,3 +41,9 @@ fs.writeFileSync(
     __dirname + '/uniter_bundle/file_index.js',
     'module.exports = ' + JSON.stringify(file_index) + ' ;'
 );
+
+console.log("\n\nfile_index\n", JSON.stringify(file_index)) ;
+fs.writeFileSync(
+    __dirname + '/uniter_bundle/file_index.php',
+    '<?php\n$file_index = ' + JSON.stringify(file_index) + ' ;'
+);
