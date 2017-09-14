@@ -19,6 +19,11 @@ RunCommand execute
   guess
 
 RunCommand execute
+  label "Add our back end application variable set, cp {{{ param::start-dir }}}/vars/$$mobilebackend.php {{{ param::start-dir }}}/clients/web/core/ && mv {{{ param::start-dir }}}/clients/web/core/$$mobilebackend.php {{{ param::start-dir }}}/clients/web/core/app_vars.fephp"
+  command "cp {{{ param::start-dir }}}/vars/$$mobilebackend.php {{{ param::start-dir }}}/clients/web/core/ && mv {{{ param::start-dir }}}/clients/web/core/$$mobilebackend.php {{{ param::start-dir }}}/clients/web/core/app_vars.fephp"
+  guess
+
+RunCommand execute
   command "cd {{{ param::start-dir }}}/clients/web && ptdeploy vhe add -yg --vhe-url=$$webclientsubdomain.$$domain --vhe-ip-port=0.0.0.0:80 --vhe-default-template-name=docroot-no-suffix"
   guess
 
