@@ -119,6 +119,11 @@ Chmod path
   mode 0777
   recursive
 
+RunCommand execute
+  label "Enable the Apache Rewrite Module"
+  command "a2enmod rewrite"
+  guess
+
 StandardTools ensure
   label "Lets ensure some standard tools are installed"
 
