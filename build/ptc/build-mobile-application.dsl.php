@@ -14,10 +14,22 @@ RunCommand execute
   command "cd {{{ param::start-dir }}} && php build/build_to_uniter.php mobile > /dev/null"
   guess
 
+Logging log
+  log-message "Our Custom Branch is : $$custom_branch"
+
 RunCommand execute
-  label "Add our back end application variable set, cp {{{ param::start-dir }}}/vars/$$mobilebackend.php {{{ param::start-dir }}}/clients/mobile/www/core/ && mv {{{ param::start-dir }}}/clients/mobile/www/core/$$mobilebackend.php {{{ param::start-dir }}}/clients/mobile/www/core/app_vars.fephp"
-  command "cp {{{ param::start-dir }}}/vars/$$mobilebackend.php {{{ param::start-dir }}}/clients/mobile/www/core/ && mv {{{ param::start-dir }}}/clients/mobile/www/core/$$mobilebackend.php {{{ param::start-dir }}}/clients/mobile/www/core/app_vars.fephp"
+  label "Add our back end application variable set, cp {{{ param::start-dir }}}/vars/configuration_devcloud.php {{{ param::start-dir }}}/clients/mobile/www/core/ && mv {{{ param::start-dir }}}/clients/mobile/www/core/configuration_devcloud.php {{{ param::start-dir }}}/clients/mobile/www/core/app_vars.fephp"
+  command "cp {{{ param::start-dir }}}/vars/configuration_devcloud.php {{{ param::start-dir }}}/clients/mobile/www/core/ && mv {{{ param::start-dir }}}/clients/mobile/www/core/configuration_devcloud.php {{{ param::start-dir }}}/clients/mobile/www/core/app_vars.fephp"
   guess
+  when "$$custom_branch"
+  equals "development"
+
+RunCommand execute
+  label "Add our back end application variable set, cp {{{ param::start-dir }}}/vars/configuration_$$mobilebackend.php {{{ param::start-dir }}}/clients/mobile/www/core/ && mv {{{ param::start-dir }}}/clients/mobile/www/core/configuration_$$mobilebackend.php {{{ param::start-dir }}}/clients/mobile/www/core/app_vars.fephp"
+  command "cp {{{ param::start-dir }}}/vars/configuration_$$mobilebackend.php {{{ param::start-dir }}}/clients/mobile/www/core/ && mv {{{ param::start-dir }}}/clients/mobile/www/core/configuration_$$mobilebackend.php {{{ param::start-dir }}}/clients/mobile/www/core/app_vars.fephp"
+  guess
+  not_when "$$custom_branch"
+  equals "development"
 
 RunCommand execute
   label "Run the Node FS "
@@ -33,6 +45,7 @@ RunCommand execute
   label "Copy icons from application"
   command "cd {{{ param::start-dir }}} && cp -r {{{ param::start-dir }}}/app/Default/Assets/icons/*.png {{{ param::start-dir }}}/clients/mobile/res/icon/android/"
   guess
+  ignore_errors
 
 RunCommand execute
   label "Tell Cordova no usage statistics"
