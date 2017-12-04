@@ -29,9 +29,10 @@ console.log('mainfiles app js', 'file data', file_data, 'file index', file_index
 
 function getFileData(path) {
     var pref_path = path.substr(1);
-    if (!file_data.hasOwnProperty(pref_path)) {
-        throw new Error('Unknown file "' + path + '"');
+    if (!hasOwn.call(file_data, pref_path)) {
+        throw new Error('Unknown file "' + pref_path + '"');
     }
+    // console.log('gfd return: ', file_data[pref_path]) ;
     return file_data[pref_path];
 }
 
