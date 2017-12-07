@@ -44,10 +44,10 @@ class View {
             die ("View Template $viewFileName in module $module Not Found\n"); }
     }
 
-    public function loadViewFile($module, $viewFileName, $pageVars, $templateData=null) {
+    public function loadViewFile ($module, $viewFileName, $pageVars) {
         \ISOPHP\js_core::$console->log('ViewFN', $viewFileName) ;
         self::$view_file_name = $viewFileName;
-        \ISOPHP\js_core::$console->log('View PageVars', $pageVars, $module, \ISOPHP\js_core::$window->location->hostname) ;
+        \ISOPHP\js_core::$console->log('View PageVars', $pageVars, $module) ;
         self::$page_vars = $pageVars;
 
         $view_client_path = '/app/'.$module.'/View/'.CURRENT_TARGET.'/'.$viewFileName ;
@@ -57,7 +57,7 @@ class View {
         \ISOPHP\js_core::$console->log("And looking for $view_default_path") ;
 
         if ($this->templateExists($view_client_path) === true) {
-            include($view_client_path) ;
+            include(REQUIRE_PREFIX.$view_client_path) ;
             return true ;
         } else if ($this->templateExists($view_default_path) === true) {
             include(REQUIRE_PREFIX.$view_default_path) ;
@@ -73,10 +73,13 @@ class View {
             $template = self::$template ;
         }
         if (ISOPHP_EXECUTION_ENVIRONMENT === 'UNITER') {
-            return $template() ;
+            $ft = $template()  ;
+            return $ft ;
         }
         if (ISOPHP_EXECUTION_ENVIRONMENT === 'ZEND') {
-            return call_user_func($template) ;
+            if ( is_callable($template) ) {
+                return call_user_func($template) ;
+            }
         }
     }
 
