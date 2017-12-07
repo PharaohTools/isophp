@@ -73,9 +73,11 @@ class Router {
 
     private function setRouteAction() {
         $actionSet = isset($this->bootstrapParams[2]) ;
+        $actionExists = \ISOPHP\core::$php->array_key_exists($this->bootstrapParams[1], $this->availableRoutes) ;
+
         // \ISOPHP\js_core::$console->log('SRA 1', $actionSet) ;
-        if ($actionSet) {
-            // \ISOPHP\js_core::$console->log('SRA 6', $this->bootstrapParams[2], $this->bootstrapParams[1],  $this->availableRoutes[$this->bootstrapParams[1]]) ;
+        if ($actionSet && $actionExists) {
+//            \ISOPHP\js_core::$console->log('SRA 6', $this->bootstrapParams[2], $this->bootstrapParams[1],  $this->availableRoutes[$this->bootstrapParams[1]]) ;
             $correctAct = \ISOPHP\core::$php->in_array( $this->bootstrapParams[2], $this->availableRoutes[$this->bootstrapParams[1]] ) ;
         } else {
             $correctAct = false ;
