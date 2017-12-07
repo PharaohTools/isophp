@@ -59,7 +59,7 @@ fs.writeFileSync(
 
 console.log("\n\nfile_index\n", JSON.stringify(file_index)) ;
 
-var file_string ;
+var file_string = '' ;
 file_string += '<?php\n\n$file_index = array(\n' ;
 
 file_index.forEach(function (one_short_path) {
