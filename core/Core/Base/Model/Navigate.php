@@ -6,8 +6,8 @@ class Navigate {
 
     public function route($control = null, $action = null, $params, $new_url = null) {
 
-         \ISOPHP\js_core::$console->log('In the applications navigation method') ;
-         \ISOPHP\js_core::$console->log($_REQUEST, $_SERVER, $control, $action) ;
+        \ISOPHP\js_core::$console->log('In the applications navigation method') ;
+        \ISOPHP\js_core::$console->log($_REQUEST, $_SERVER, $control, $action) ;
 
         $route_set[] = isset($control) ;
         $route_set[] = isset($action) ;
