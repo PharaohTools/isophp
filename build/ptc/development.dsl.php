@@ -18,7 +18,7 @@ RunCommand execute
 
 RunCommand execute
   label "NPM Install Electron Packager and cordova"
-  command "npm install --silent -g electron-packager cordova browserify uglifyjs uglify-js > /dev/null"
+  command "npm install --silent -g electron-packager cordova browserify uglifyjs uglify-js cordova-icon > /dev/null"
   guess
 
 Java install
