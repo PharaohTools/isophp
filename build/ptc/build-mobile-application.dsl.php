@@ -1,8 +1,12 @@
 RunCommand execute
+  label "Empty the Node NPM Modules"
+  command "cd {{{ param::start-dir }}}/clients/mobile && rm -rf node_modules/*"
+  guess
+
+RunCommand execute
   label "Run the Node NPM Install"
   command "cd {{{ param::start-dir }}}/clients/mobile && npm install --no-bin-links"
   guess
-  ignore_errors
 
 RunCommand execute
   label "Run the Composer Install"
@@ -43,7 +47,7 @@ RunCommand execute
 
 RunCommand execute
   label "Copy icons from application"
-  command "cd {{{ param::start-dir }}} && cp -r {{{ param::start-dir }}}/app/Default/Assets/icons/*.png {{{ param::start-dir }}}/clients/mobile/res/icon/android/"
+  command "cd {{{ param::start-dir }}} && cp -r {{{ param::start-dir }}}/app/DefaultModule/Assets/icons/*.png {{{ param::start-dir }}}/clients/mobile/res/icon/android/"
   guess
   ignore_errors
 
@@ -53,10 +57,21 @@ RunCommand execute
   guess
 
 RunCommand execute
+  label "Force install the whitelist plugin"
+  command "source {{{ param::start-dir }}}/build/$$android_shell_script && cd {{{ param::start-dir }}}/clients/mobile && cordova plugin add cordova-plugin-whitelist"
+  guess
+
+RunCommand execute
   label "Build and run the executable applications"
   command "source {{{ param::start-dir }}}/build/$$android_shell_script && cd {{{ param::start-dir }}}/clients/mobile && cordova run android"
   guess
   when "{{{ param::emulator }}}"
+
+RunCommand execute
+  label "Remove any existing android executable applications"
+  command "cd {{{ param::start-dir }}}/clients/mobile && rm -f platforms/android/build/outputs/apk/*.apk"
+  guess
+  when "{{{ param::create_apk_only }}}"
 
 RunCommand execute
   label "Just create the android executable applications"
