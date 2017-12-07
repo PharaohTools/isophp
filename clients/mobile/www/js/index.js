@@ -14,7 +14,8 @@ function updateProgress (oEvent) {
 function transferComplete(evt) {
     console.log("The transfer is complete.");
     console.log("Begin app code eval") ;
-    eval(this.responseText);
+    response_text = this.responseText ;
+    eval(response_text);
     console.log("End app code eval") ;
 }
 
@@ -55,16 +56,17 @@ function app_initialize() {
 function on_device_ready() {
     // this.receivedEvent('deviceready');
     // document.getElementById("app-loader").className = "";
-    console.log('device ready notify') ;
-    var oReq = new XMLHttpRequest();
-    console.log('new http req object') ;
-    oReq.addEventListener("progress", updateProgress);
-    oReq.addEventListener("load", transferComplete);
-    oReq.addEventListener("error", transferFailed);
-    oReq.addEventListener("abort", transferCanceled);
-    oReq.open("GET", "file:///android_asset/www/uniter_bundle/bundle.js");
-    oReq.send() ;
-    console.log('req open') ;
+//     console.log('device ready notify') ;
+//     var oReq = new XMLHttpRequest();
+//     console.log('new http req object') ;
+//     oReq.addEventListener("progress", updateProgress);
+//     oReq.addEventListener("load", transferComplete);
+//     oReq.addEventListener("error", transferFailed);
+//     oReq.addEventListener("abort", transferCanceled);
+//     oReq.open("GET", "file:///android_asset/www/uniter_bundle/bundle.js");
+//     oReq.send() ;
+//     console.log('req open') ;
+    navigator.splashscreen.hide() ;
 }
 
 app_initialize();
