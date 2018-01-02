@@ -36,6 +36,11 @@ RunCommand execute
   equals "development"
 
 RunCommand execute
+  label "Always add our default application variable set, cp {{{ param::start-dir }}}/vars/default.php {{{ param::start-dir }}}/clients/mobile/www/core/default.fephp "
+  command "cp {{{ param::start-dir }}}/vars/default.php {{{ param::start-dir }}}/clients/mobile/www/core/default.fephp "
+  guess
+
+RunCommand execute
   label "Run the Node FS "
   command "cd {{{ param::start-dir }}}/clients/mobile && sudo node fs > /dev/null"
   guess

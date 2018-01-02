@@ -36,6 +36,11 @@ RunCommand execute
   equals "development"
 
 RunCommand execute
+  label "Always add our default application variable set, cp {{{ param::start-dir }}}/vars/default.php {{{ param::start-dir }}}/clients/web/core/default.fephp "
+  command "cp {{{ param::start-dir }}}/vars/default.php {{{ param::start-dir }}}/clients/web/core/default.fephp "
+  guess
+
+RunCommand execute
   command "cd {{{ param::start-dir }}}/clients/web && ptdeploy vhe add -yg --vhe-url=$$webclientsubdomain.$$domain --vhe-ip-port=0.0.0.0:80 --vhe-default-template-name=docroot-no-suffix"
   guess
 
