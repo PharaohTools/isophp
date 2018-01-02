@@ -31,7 +31,7 @@ class Base {
         $new_data_string = \ISOPHP\core::$php->substr($new_data_string, 0, $length-1) ;
         $new_data_string = \ISOPHP\js_core::$window->encodeURI($new_data_string) ;
 
-        \ISOPHP\js_core::$console->log('perform request with: ', $new_data_string) ;
+        \ISOPHP\js_core::$console->log('perform request with: ', $new_data_string, 'post to:', \Model\Configuration::$SERVER_URL) ;
         $data = array(
             'type' => 'POST',
             'url' => \Model\Configuration::$SERVER_URL,
