@@ -1,4 +1,9 @@
 RunCommand execute
+  label "Update NPM"
+  command "npm update -g --silent"
+  guess
+
+RunCommand execute
   label "Empty the Node NPM Modules"
   command "cd {{{ param::start-dir }}}/clients/mobile && rm -rf node_modules/*"
   guess
@@ -22,18 +27,9 @@ Logging log
   log-message "Our Custom Branch is : $$custom_branch"
 
 RunCommand execute
-  label "Add our back end application variable set, cp {{{ param::start-dir }}}/vars/configuration_devcloud.php {{{ param::start-dir }}}/clients/mobile/www/core/ && mv {{{ param::start-dir }}}/clients/mobile/www/core/configuration_devcloud.php {{{ param::start-dir }}}/clients/mobile/www/core/app_vars.fephp"
-  command "cp {{{ param::start-dir }}}/vars/configuration_devcloud.php {{{ param::start-dir }}}/clients/mobile/www/core/ && mv {{{ param::start-dir }}}/clients/mobile/www/core/configuration_devcloud.php {{{ param::start-dir }}}/clients/mobile/www/core/app_vars.fephp"
+  label "Add our back end application variable set, cp {{{ param::start-dir }}}/vars/configuration_$$backendenv.php {{{ param::start-dir }}}/clients/mobile/www/core/ && mv {{{ param::start-dir }}}/clients/mobile/www/core/configuration_$$backendenv.php {{{ param::start-dir }}}/clients/mobile/www/core/app_vars.fephp"
+  command "cp {{{ param::start-dir }}}/vars/configuration_$$backendenv.php {{{ param::start-dir }}}/clients/mobile/www/core/ && mv {{{ param::start-dir }}}/clients/mobile/www/core/configuration_$$backendenv.php {{{ param::start-dir }}}/clients/mobile/www/core/app_vars.fephp"
   guess
-  when "$$custom_branch"
-  equals "development"
-
-RunCommand execute
-  label "Add our back end application variable set, cp {{{ param::start-dir }}}/vars/configuration_$$mobilebackend.php {{{ param::start-dir }}}/clients/mobile/www/core/ && mv {{{ param::start-dir }}}/clients/mobile/www/core/configuration_$$mobilebackend.php {{{ param::start-dir }}}/clients/mobile/www/core/app_vars.fephp"
-  command "cp {{{ param::start-dir }}}/vars/configuration_$$mobilebackend.php {{{ param::start-dir }}}/clients/mobile/www/core/ && mv {{{ param::start-dir }}}/clients/mobile/www/core/configuration_$$mobilebackend.php {{{ param::start-dir }}}/clients/mobile/www/core/app_vars.fephp"
-  guess
-  not_when "$$custom_branch"
-  equals "development"
 
 RunCommand execute
   label "Always add our default application variable set, cp {{{ param::start-dir }}}/vars/default.php {{{ param::start-dir }}}/clients/mobile/www/core/default.fephp "
@@ -58,13 +54,26 @@ RunCommand execute
 
 RunCommand execute
   label "Tell Cordova no usage statistics"
-  command 'echo n | cordova'
+  command 'echo n | cordova > /dev/null'
   guess
 
 RunCommand execute
-  label "Force install the whitelist plugin"
-  command "source {{{ param::start-dir }}}/build/$$android_shell_script && cd {{{ param::start-dir }}}/clients/mobile && cordova plugin add cordova-plugin-whitelist"
+  label "Force remove the platforms"
+  command "source {{{ param::start-dir }}}/build/$$android_shell_script && cd {{{ param::start-dir }}}/clients/mobile && cordova platform remove {{ loop }}"
   guess
+  loop "ios,android"
+
+RunCommand execute
+  label "Force install the platforms"
+  command "source {{{ param::start-dir }}}/build/$$android_shell_script && cd {{{ param::start-dir }}}/clients/mobile && cordova platform add {{ loop }}"
+  guess
+  loop "ios,android"
+
+RunCommand execute
+  label "Force install the cordova plugins"
+  command "source {{{ param::start-dir }}}/build/$$android_shell_script && cd {{{ param::start-dir }}}/clients/mobile && cordova plugin add cordova-plugin-{{ loop }}"
+  guess
+  loop "splashscreen,whitelist"
 
 RunCommand execute
   label "Build and run the executable applications"
