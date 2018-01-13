@@ -7,7 +7,7 @@ Composer ensure
 NodeJS install
 
 RunCommand execute
-  label "Install prequisite applications"
+  label "Install prequisite packages"
   command "apt-get install -y apache2 libapache2-mod-php5 sqlite3 php5-sqlite zip unzip"
   guess
 
@@ -17,18 +17,27 @@ RunCommand execute
   guess
 
 RunCommand execute
+  label "Check if Electron Packager and cordova are installed"
+  command 'ISINSTEP=`which electron-packager > /dev/null && echo $?` && ISINSTC=`which cordova > /dev/null && echo $?` && BOTH_INST=`! (( $ISINSTEP | $ISINSTC )); echo $?` && if [ "$BOTH_INST" = "0" ] ; then echo "true" ; fi'
+  guess
+  ignore_errors
+  register "electron_cordova_are_installed"
+
+RunCommand execute
   label "NPM Install Electron Packager and cordova"
   command "npm install --silent -g electron-packager cordova browserify uglifyjs uglify-js cordova-icon > /dev/null"
   guess
+  not_when "{{{ param::electron_cordova_are_installed }}}"
+  equals "true"
 
 Java install
-  java-install-version "1.8"
+  version "1.8"
   guess
 
 PTDeploy ensure
   guess
 
-PTBuild install
+PTBuild ensure
   guess
   label "Lets ensure Pharaoh Build"
   vhe-url "build.{{{ var::vmname }}}.vm"
@@ -38,23 +47,35 @@ PTBuild install
 
 RunCommand execute
   label "Install SDKManager for Gradle"
-  command 'echo ptv | sudo su -c "(export SDKMAN_DIR=/home/ptbuild/.sdkman && curl -s https://get.sdkman.io | bash)" - ptbuild'
+  command 'echo ptv | sudo -S su -c "(export SDKMAN_DIR=/home/ptbuild/.sdkman && curl -s https://get.sdkman.io | bash > /dev/null)" - ptbuild'
+  guess
 
 RunCommand execute
   label "Install Gradle using SDKManager"
-  command "echo ptv | sudo su -c 'source /home/ptbuild/.sdkman/bin/sdkman-init.sh && sdk install gradle 4.0.2' - ptbuild"
+  command "echo ptv | sudo -S su -c 'source /home/ptbuild/.sdkman/bin/sdkman-init.sh && sdk install gradle 4.0.2' - ptbuild"
   guess
+
+RunCommand execute
+  label "Check if the Android SDK tools are installed"
+  command 'ISINST=`ls /home/ptbuild/Android/Sdk/tools/bin/sdkmanager` && if [ "$ISINST" = "/home/ptbuild/Android/Sdk/tools/bin/sdkmanager" ] ; then echo "true" ; fi '
+  guess
+  ignore_errors
+  register "android_sdk_tools_are_installed"
 
 RunCommand execute
   label "Copy the host shared SDK tools"
   command "cp /var/www/hostshare/build/binaries/sdk-tools-linux-3859397.zip /tmp/sdk-tools.zip"
   guess
   ignore_errors
+  not_when "{{{ param::android_sdk_tools_are_installed }}}"
+  equals "true"
 
 RunCommand execute
   label "Get the Android SDK tools"
-  command "if [ ! -f /tmp/sdk-tools.zip ] ; then curl -o /tmp/sdk-tools.zip https://dl.google.com/android/repository/sdk-tools-linux-3859397.zip ; fi"
+  command "rm -f /tmp/sdk-tools.zip ] ; curl -o /tmp/sdk-tools.zip https://dl.google.com/android/repository/sdk-tools-linux-3859397.zip ; "
   guess
+  not_when "{{{ param::android_sdk_tools_are_installed }}}"
+  equals "true"
 
 RunCommand execute
   label "Make SDK Dir - MUST RUN AFTER PTBUILD INSTALL OR USER WONT EXIST"
@@ -65,6 +86,8 @@ RunCommand execute
   label "Unzip SDK Tools"
   command "cd /tmp && mv sdk-tools.zip /home/ptbuild/Android/Sdk && cd /home/ptbuild/Android/Sdk && rm -rf /home/ptbuild/Android/Sdk/tools && unzip -qq sdk-tools.zip && chown -R ptbuild:ptbuild /home/ptbuild/Android"
   guess
+  not_when "{{{ param::android_sdk_tools_are_installed }}}"
+  equals "true"
 
 RunCommand execute
   label "Install the android build tools with android sdkmanager"
@@ -81,9 +104,16 @@ Logging log
   source Autopilot
 
 RunCommand execute
-  label "Import the Development Build pipes"
-  command "ptbuild importexport import -yg --source=/var/www/hostshare/build/ptbuild/pipes/build_development_application"
+  label "Get the names of the Build pipes"
+  command 'cd /var/www/hostshare/build/ptbuild/pipes/ && ls -1 | paste -sd "," -'
   guess
+  register "build_pipe_names"
+
+RunCommand execute
+  label "Import the Development Build pipes"
+  command "ptbuild importexport import -yg --source=/var/www/hostshare/build/ptbuild/pipes/{{ loop }}"
+  guess
+  loop "$$build_pipe_names"
 
 RunCommand execute
   label "Create a default admin user"
@@ -130,5 +160,8 @@ StandardTools ensure
 GitTools ensure
   label "Lets ensure some git tools are installed"
 
-GitKeySafe ensure
-  label "Lets ensure Git SSH Key Safe is installed"
+RunCommand execute
+  label "FS Fixes for web writing to share"
+  command "usermod -a -G vboxsf {{ loop }}"
+  guess
+  loop "www-data,ptv"
