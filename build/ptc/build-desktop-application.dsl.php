@@ -22,18 +22,9 @@ Logging log
   log-message "Our Custom Branch is : $$custom_branch"
 
 RunCommand execute
-  label "Add our back end application variable set, cp /var/www/applications/$$env/{{{ var::repo_slug }}}/$$deploy_time/vars/configuration_devcloud.php /var/www/applications/$$env/{{{ var::repo_slug }}}/$$deploy_time/clients/web/core/ && mv /var/www/applications/$$env/{{{ var::repo_slug }}}/$$deploy_time/clients/web/core/configuration_devcloud.php /var/www/applications/$$env/{{{ var::repo_slug }}}/$$deploy_time/clients/web/core/app_vars.fephp"
-  command "cp /var/www/applications/$$env/{{{ var::repo_slug }}}/$$deploy_time/vars/configuration_devcloud.php /var/www/applications/$$env/{{{ var::repo_slug }}}/$$deploy_time/clients/web/core/ && mv /var/www/applications/$$env/{{{ var::repo_slug }}}/$$deploy_time/clients/web/core/configuration_devcloud.php /var/www/applications/$$env/{{{ var::repo_slug }}}/$$deploy_time/clients/web/core/app_vars.fephp"
+  label "Always Add our back end application variable set, cp {{{ param::start-dir }}}/vars/configuration_$$backendenv.php {{{ param::start-dir }}}/clients/desktop/web/core/ && mv {{{ param::start-dir }}}/clients/desktop/web/core/configuration_$$backendenv.php {{{ param::start-dir }}}/clients/desktop/web/core/app_vars.fephp"
+  command "cp {{{ param::start-dir }}}/vars/configuration_$$backendenv.php {{{ param::start-dir }}}/clients/desktop/web/core/ && mv {{{ param::start-dir }}}/clients/desktop/web/core/configuration_$$backendenv.php {{{ param::start-dir }}}/clients/desktop/web/core/app_vars.fephp"
   guess
-  when "$$custom_branch"
-  equals "development"
-
-RunCommand execute
-  label "Add our back end application variable set, cp /var/www/applications/$$env/{{{ var::repo_slug }}}/$$deploy_time/vars/configuration_$$custom_branch.php /var/www/applications/$$env/{{{ var::repo_slug }}}/$$deploy_time/clients/web/core/ && mv /var/www/applications/$$env/{{{ var::repo_slug }}}/$$deploy_time/clients/web/core/configuration_$$custom_branch.php /var/www/applications/$$env/{{{ var::repo_slug }}}/$$deploy_time/clients/web/core/app_vars.fephp"
-  command "cp /var/www/applications/$$env/{{{ var::repo_slug }}}/$$deploy_time/vars/configuration_$$custom_branch.php /var/www/applications/$$env/{{{ var::repo_slug }}}/$$deploy_time/clients/web/core/ && mv /var/www/applications/$$env/{{{ var::repo_slug }}}/$$deploy_time/clients/web/core/configuration_$$custom_branch.php /var/www/applications/$$env/{{{ var::repo_slug }}}/$$deploy_time/clients/web/core/app_vars.fephp"
-  guess
-  not_when "$$custom_branch"
-  equals "development"
 
 RunCommand execute
   label "Always add our default application variable set, cp {{{ param::start-dir }}}/vars/default.php {{{ param::start-dir }}}/clients/desktop/core/default.fephp "
