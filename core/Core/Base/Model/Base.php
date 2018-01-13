@@ -31,10 +31,14 @@ class Base {
         $new_data_string = \ISOPHP\core::$php->substr($new_data_string, 0, $length-1) ;
         $new_data_string = \ISOPHP\js_core::$window->encodeURI($new_data_string) ;
 
-        \ISOPHP\js_core::$console->log('perform request with: ', $new_data_string, 'post to:', \Model\Configuration::$SERVER_URL) ;
+        $config = new \Model\Configuration() ;
+        $server_url = $config->variable('ISOPHP_API_SERVER_URL') ;
+
+        \ISOPHP\js_core::$console->log('api server url: ', $server_url, 'post to:') ;
+
         $data = array(
             'type' => 'POST',
-            'url' => \Model\Configuration::$SERVER_URL,
+            'url' => $server_url,
             'dataType'=> "json",
             'data' => $new_data_string
         ) ;
