@@ -4,14 +4,16 @@ namespace Model ;
 
 class Configuration {
 
-    public static $SERVER_URL ;
+    public static $config ;
 
-    public function __construct() {
-        $variables = array() ;
-        require_once (__DIR__.DIRECTORY_SEPARATOR.'default.php') ;
-        self::$SERVER_URL = 'http://server.'.$variables['application_slug'].'.vm:8043' ;
+    public static function variable($var) {
+        require (REQUIRE_PREFIX.'/core/default.fephp') ;
+        $config = \Model\Configuration::$config ;
+        $config['ISOPHP_API_SERVER_URL'] = 'http://server.'.$config['application_slug'].'.vm:80'.$config['random_port_suffix'] ;
+        if (isset($config[$var])) {
+            return $config[$var];
+        }
+        return null ;
     }
 
-
 }
-
