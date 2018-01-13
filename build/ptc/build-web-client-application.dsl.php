@@ -22,18 +22,9 @@ Logging log
   log-message "Our Custom Branch is : $$custom_branch"
 
 RunCommand execute
-  label "Add our back end application variable set, cp {{{ param::start-dir }}}/vars/configuration_devcloud.php {{{ param::start-dir }}}/clients/web/core/ && mv {{{ param::start-dir }}}/clients/web/core/configuration_devcloud.php {{{ param::start-dir }}}/clients/web/core/app_vars.fephp"
-  command "cp {{{ param::start-dir }}}/vars/configuration_devcloud.php {{{ param::start-dir }}}/clients/web/core/ && mv {{{ param::start-dir }}}/clients/web/core/configuration_devcloud.php {{{ param::start-dir }}}/clients/web/core/app_vars.fephp"
+  label "Add our back end application variable set, cp {{{ param::start-dir }}}/vars/configuration_$$backendenv.php {{{ param::start-dir }}}/clients/web/core/ && mv {{{ param::start-dir }}}/clients/web/core/configuration_$$backendenv.php {{{ param::start-dir }}}/clients/web/core/app_vars.fephp"
+  command "cp {{{ param::start-dir }}}/vars/configuration_$$backendenv.php {{{ param::start-dir }}}/clients/web/core/ && mv {{{ param::start-dir }}}/clients/web/core/configuration_$$backendenv.php {{{ param::start-dir }}}/clients/web/core/app_vars.fephp"
   guess
-  when "$$custom_branch"
-  equals "development"
-
-RunCommand execute
-  label "Add our back end application variable set, cp {{{ param::start-dir }}}/vars/configuration_$$mobilebackend.php {{{ param::start-dir }}}/clients/web/core/ && mv {{{ param::start-dir }}}/clients/web/core/configuration_$$mobilebackend.php {{{ param::start-dir }}}/clients/web/core/app_vars.fephp"
-  command "cp {{{ param::start-dir }}}/vars/configuration_$$mobilebackend.php {{{ param::start-dir }}}/clients/web/core/ && mv {{{ param::start-dir }}}/clients/web/core/configuration_$$mobilebackend.php {{{ param::start-dir }}}/clients/web/core/app_vars.fephp"
-  guess
-  not_when "$$custom_branch"
-  equals "development"
 
 RunCommand execute
   label "Always add our default application variable set, cp {{{ param::start-dir }}}/vars/default.php {{{ param::start-dir }}}/clients/web/core/default.fephp "
