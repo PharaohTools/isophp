@@ -1,0 +1,92 @@
+{
+    "BuildCleanup": {
+        "build_cleanup_enabled": "on",
+        "trim_history_index": "on",
+        "no_to_keep": "3"
+    },
+    "ClearWorkspace": {
+        "enable_clear_workspace_before_build": "on"
+    },
+    "CopyOnSave": {
+        "enabled": "on",
+        "target_directory": "\/var\/www\/pharaohtools\/build\/config\/ptbuild\/pipes"
+    },
+    "GoogleCalendar": {
+        "clientid": "",
+        "emailaddress": "",
+        "keyfilelocation": "",
+        "youremailid": ""
+    },
+    "Hipchat": {
+        "Token": "",
+        "Room Id or Name": "",
+        "From": ""
+    },
+    "Ironmq": {
+        "token": "",
+        "projectid": "",
+        "queuename": ""
+    },
+    "Logstash": {
+        "ipaddress": "",
+        "port": ""
+    },
+    "Mongodb": {
+        "host": "",
+        "dbname": "",
+        "collection": "",
+        "path": "",
+        "title": ""
+    },
+    "PipeRunParameters": {
+        "piperun_parameters_enabled": "on",
+        "parameters": {
+            "2772886595007582": {
+                "param_type": "boolean",
+                "param_original_options": "text,boolean,textarea,options",
+                "param_name": "include_database",
+                "param_default": "staging",
+                "param_textarea_default": "",
+                "param_options": "staging\r\nproduction",
+                "param_description": "Here you can choose whether to include rebuilding the database during the redeployment"
+            },
+            "233741182370418": {
+                "param_type": "text",
+                "param_original_options": "text,boolean,textarea,options",
+                "param_name": "site_directory",
+                "param_default": "\/var\/www\/pharaohtools",
+                "param_textarea_default": "",
+                "param_options": "",
+                "param_description": "This is the File System Path of the directory containing our Site."
+            }
+        }
+    },
+    "PollSCM": {
+        "git_repository_url": "",
+        "git_branch": "",
+        "git_privkey_path": "",
+        "cron_string": ""
+    },
+    "SCMPublishOnSave": {
+        "target_repository": ""
+    },
+    "SSH": {
+        "username": "",
+        "password": "",
+        "ipaddress": "",
+        "sourcefilepath": "",
+        "destinationfilepath": ""
+    },
+    "SVN": {
+        "Repository": "",
+        "TargetPath": "",
+        "Username": "",
+        "Password": ""
+    },
+    "ScheduledBuild": {
+        "cron_string": ""
+    },
+    "SendEmail": {
+        "send_postbuild_email_address": ""
+    }
+}

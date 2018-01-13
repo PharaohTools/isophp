@@ -1,0 +1,12 @@
+{
+    "6908772637261313": {
+        "module": "Shell",
+        "steptype": "shelldata",
+        "data": "echo \"Let's check the correct parameters are configured for our build\" ;\r\necho \"environment_to_ensure = $environment_to_ensure\" ;\r\necho \"site_directory = $site_directory\" ;"
+    },
+    "6834014738919412": {
+        "module": "Shell",
+        "steptype": "shelldata",
+        "data": "echo \"Let's now ensure our environment configuration\" ;\r\n# dir_basename=\"$(basename $site_directory)\" ;\r\n# echo \"Base directory is $dir_basename\" ;\r\ncd $site_directory ;\r\necho \"Let's look at our Current Location\" ;\r\npwd ;\r\necho \"ptconfigure auto x --af=build\/config\/ptconfigure\/config\/cloud\/site\/invoke-configuration.dsl.php  --env=$environment_to_ensure --instance_id=$instance_id --vars=build\/config\/variable_groups\/$environment_to_ensure.php --step-times --step-numbers \" ;\r\nsleep 10 ;\r\nptconfigure auto x --af=build\/config\/ptconfigure\/config\/cloud\/site\/invoke-configuration.dsl.php  --env=$environment_to_ensure --instance_id=$instance_id --vars=build\/config\/variable_groups\/$environment_to_ensure.php --step-times --step-numbers ;"
+    }
+}

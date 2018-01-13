@@ -1,0 +1,100 @@
+{
+    "BuildCleanup": {
+        "no_to_keep": ""
+    },
+    "BuildQueue": {
+        "build_queue_max": "",
+        "build_queue_delay": ""
+    },
+    "CopyOnSave": {
+        "enabled": "on",
+        "target_directory": "\/var\/www\/pharaohtools\/build\/config\/ptbuild\/pipes"
+    },
+    "GoogleCalendar": {
+        "clientid": "",
+        "emailaddress": "",
+        "keyfilelocation": "",
+        "youremailid": ""
+    },
+    "Hipchat": {
+        "Token": "",
+        "Room Id or Name": "",
+        "From": ""
+    },
+    "Ironmq": {
+        "token": "",
+        "projectid": "",
+        "queuename": ""
+    },
+    "Logstash": {
+        "ipaddress": "",
+        "port": ""
+    },
+    "Mongodb": {
+        "host": "",
+        "dbname": "",
+        "collection": "",
+        "path": "",
+        "title": ""
+    },
+    "PipeRunParameters": {
+        "piperun_parameters_enabled": "on",
+        "parameters": {
+            "233741182370418": {
+                "param_type": "text",
+                "param_original_options": "text,boolean,textarea,options",
+                "param_name": "site_directory",
+                "param_default": "\/var\/www\/pharaohtools",
+                "param_textarea_default": "",
+                "param_options": "",
+                "param_description": "This is the File System Path of the directory containing our Site."
+            },
+            "26672999262966123": {
+                "param_type": "options",
+                "param_original_options": "text,boolean,textarea,options",
+                "param_name": "instance_id",
+                "param_default": "01",
+                "param_textarea_default": "",
+                "param_options": "01\r\n02\r\n03\r\n04\r\n05\r\n06\r\n07\r\n08\r\n09\r\n10",
+                "param_description": "Differentiator for numbering your QA Environments."
+            },
+            "37391220077612443": {
+                "param_type": "options",
+                "param_original_options": "text,boolean,textarea,options",
+                "param_name": "environment_to_ensure",
+                "param_default": "qa",
+                "param_textarea_default": "",
+                "param_options": "qa\r\nstaging\r\nproduction",
+                "param_description": "Here you can choose an option for the name of the environment to build. A QA Environment will be a single server environment. These are immutable, aimed to being created and destroyed as needed. Using the Instance ID Parameter, you'll be able to choose a differentiator ID to number your Environments. Staging and Production are clustered, complete environments. These aren't usually intended to be immutable and are not numbered."
+            }
+        }
+    },
+    "PollSCM": {
+        "git_repository_url": "",
+        "git_branch": "",
+        "git_privkey_path": "",
+        "cron_string": ""
+    },
+    "SCMPublishOnSave": {
+        "target_repository": ""
+    },
+    "SSH": {
+        "username": "",
+        "password": "",
+        "ipaddress": "",
+        "sourcefilepath": "",
+        "destinationfilepath": ""
+    },
+    "SVN": {
+        "Repository": "",
+        "TargetPath": "",
+        "Username": "",
+        "Password": ""
+    },
+    "ScheduledBuild": {
+        "cron_string": ""
+    },
+    "SendEmail": {
+        "send_postbuild_email_address": ""
+    }
+}

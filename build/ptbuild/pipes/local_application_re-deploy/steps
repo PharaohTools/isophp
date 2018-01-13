@@ -1,0 +1,12 @@
+{
+    "6908772637261313": {
+        "module": "Shell",
+        "steptype": "shelldata",
+        "data": "echo \"Let's check the correct parameters are configured for our build\" ;\r\necho \"include_database = $include_database\" ;\r\necho \"site_directory = $site_directory\" ;"
+    },
+    "6834014738919412": {
+        "module": "Shell",
+        "steptype": "shelldata",
+        "data": "#!\/bin\/bash\r\necho \"Beginning Deployment execution\" ;\r\necho \"Changing to Website directory\" ;\r\ncd $site_directory ;\r\necho $PWD ;\r\nif [ \"$include_database\"==\"on\" ]\r\nthen\r\n\techo \"Running Deployment with Database\" ;\r\n\techo \"ptdeploy auto x --af=$site_directory\/build\/config\/ptdeploy\/dev\/deploy-code-and-db.php \" ;\r\n\tsudo su -c 'ptdeploy auto x --af=$site_directory\/build\/config\/ptdeploy\/dev\/deploy-code-and-db.php ' ;\r\nelse\r\n\techo \"Running Deployment without Database\" ;\r\n\techo \"ptdeploy auto x --af=$site_directory\/build\/config\/ptdeploy\/dev\/deploy-code-no-db.php \" ;\r\n\tsudo su -c 'ptdeploy auto x --af=$site_directory\/build\/config\/ptdeploy\/dev\/deploy-code-no-db.php' ;\r\nfi\r\n"
+    }
+}

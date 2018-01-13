@@ -1,0 +1,12 @@
+{
+    "project-name": "Cloud Environment Configuration Ensure",
+    "project-slug": "cloud_environment_configuration_ensure",
+    "project-description": "This will ensure that the configuration of an environment is correct.",
+    "default-scm-url": null,
+    "email-id": null,
+    "parameter-status": null,
+    "parameter-name": null,
+    "parameter-dvalue": null,
+    "parameter-input": "",
+    "parameter-description": null
+}

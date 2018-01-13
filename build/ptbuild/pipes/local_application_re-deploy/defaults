@@ -1,0 +1,12 @@
+{
+    "project-name": "Local Application Re-Deploy",
+    "project-slug": "local_application_re-deploy",
+    "project-description": "Run Pharaoh Deploy Locally to Re Deploy the Application from local files if needed",
+    "default-scm-url": null,
+    "email-id": null,
+    "parameter-status": null,
+    "parameter-name": null,
+    "parameter-dvalue": null,
+    "parameter-input": "",
+    "parameter-description": null
+}

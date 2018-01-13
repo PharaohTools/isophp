@@ -1,0 +1,12 @@
+{
+    "project-name": "Cloud Environment Infrastructure Ensure",
+    "project-slug": "cloud_environment_infrastructure_ensure",
+    "project-description": "This pipeline will ensure the existence of a single server web environment",
+    "default-scm-url": null,
+    "email-id": null,
+    "parameter-status": null,
+    "parameter-name": null,
+    "parameter-dvalue": null,
+    "parameter-input": "",
+    "parameter-description": null
+}

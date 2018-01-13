@@ -1,0 +1,12 @@
+{
+    "6834014738919412": {
+        "module": "Shell",
+        "steptype": "shelldata",
+        "data": "echo \"Let's check the correct parameters are configured for our build\" ;\r\necho \"environment_to_ensure = $environment_to_ensure\" ;\r\necho \"site_directory = $site_directory\" ;\r\necho \"Beginning Deployment execution\" ;\r\ncd $site_directory ;\r\necho $PWD ;\r\necho \"Switching to correct branch for Environment. Master for Production, Env name for anything else\" ;\r\nif [ $environment_to_ensure = \"production\" ]\r\nthen\r\n\techo \"Checking out the master branch\" ;\r\n\tgit checkout master ;\r\nelse\r\n\techo \"Checking out the branch: $environment_to_ensure \" ;\r\n\tgit checkout $environment_to_ensure ;\r\nfi\r\necho \"in the repo dir, showing contents\" ;\r\nls -lah ;\r\necho \"Running Pharaoh Configure Filewatcher to choose the deployment type based on database changes...\" ;\r\n\r\n\r\necho \"Running PTConfigure filewatcher to choose the deployment type based on database changes...\";\r\nptconfigure filewatcher once --yes --guess --file='db\/database.sql' --versioner='git' --value='HEAD~1' \\\r\n  --success-callback=\"ptdeploy auto x --af=build\/config\/ptdeploy\/cloud\/invoke-deployment.dsl.php --env=$environment_to_ensure --vars=build\/config\/variable_groups\/$environment_to_ensure.php --install_db --step-times --step-numbers \" \\\r\n  --failure-callback=\"ptdeploy auto x --af=build\/config\/ptdeploy\/cloud\/invoke-deployment.dsl.php  --env=$environment_to_ensure --vars=build\/config\/variable_groups\/$environment_to_ensure.php --step-times --step-numbers \" \\\r\n  --escalate ;\r\n\r\n#ptconfigure filewatcher once --yes --guess --file='db\/database.sql' \\\r\n# --versioner='git' --value='HEAD~1' \\\r\n# --success-callback=\"ptdeploy auto x  --env=$environment_to_ensure --af=build\/config\/ptdeploy\/dapperfy\/standalone\/invoke-code-data.php \" \\\r\n# --failure-callback=\"ptdeploy auto x --env=$environment_to_ensure --af=build\/config\/ptdeploy\/dapperfy\/standalone\/invoke-code-dbconf.php \" \\\r\n# --escalate ;\r\n"
+    },
+    "5876532893820666": {
+        "module": "Shell",
+        "steptype": "shelldata",
+        "data": "#!\/bin\/bash\r\necho \"Running Testingkamen Executors for $environment_to_ensure ...\"\r\n# cd $WORKSPACE\/deployed\r\n# sudo testingkamen autopilot execute --autopilot-file=\"build\/config\/testingkamen\/autopilots\/continuous-staging.php\""
+    }
+}

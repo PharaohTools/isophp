@@ -1,0 +1,12 @@
+{
+    "project-name": "Cloud Environment Deploy Latest Application",
+    "project-slug": "cloud_environment_deploy_latest_application",
+    "project-description": "Deploy The Latest Version of your Application to an Environment",
+    "default-scm-url": null,
+    "email-id": null,
+    "parameter-status": null,
+    "parameter-name": null,
+    "parameter-dvalue": null,
+    "parameter-input": "",
+    "parameter-description": null
+}

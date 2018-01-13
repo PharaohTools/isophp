@@ -1,0 +1,12 @@
+{
+    "project-name": "Cloud Environment Infrastructure Remove",
+    "project-slug": "cloud_environment_infrastructure_remove",
+    "project-description": "Use this to remove the infrastructure for a cloud environment",
+    "default-scm-url": null,
+    "email-id": null,
+    "parameter-status": null,
+    "parameter-name": null,
+    "parameter-dvalue": null,
+    "parameter-input": "",
+    "parameter-description": null
+}

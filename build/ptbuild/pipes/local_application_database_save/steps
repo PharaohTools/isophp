@@ -1,0 +1,7 @@
+{
+    "6834014738919412": {
+        "module": "Shell",
+        "steptype": "shelldata",
+        "data": "echo \"Let's check the correct parameters are configured for our build\" ;\r\necho \"site_directory = $site_directory\" ;\r\necho \"Changing to Website directory\" ;\r\necho $site_directory ;\r\ncd $site_directory ;\r\necho $PWD ;\r\necho \"Dumping Database\" ;\r\necho \"ptdeploy auto x --af=build\/config\/ptdeploy\/dev\/dump-db.dsl.php --vars=build\/config\/variable_groups\/dev.php \" ;\r\nsudo su -c 'ptdeploy auto x --af=build\/config\/ptdeploy\/dev\/dump-db.dsl.php --vars=build\/config\/variable_groups\/dev.php' ;"
+    }
+}

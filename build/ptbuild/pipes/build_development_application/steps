@@ -12,6 +12,6 @@
     "9991777791910496": {
         "module": "Shell",
         "steptype": "shelldata",
-        "data": "if [ \"$INCLUDE_DESKTOP_ASSETS\" == \"on\" ] ; then\r\n    # For the Desktop Build\r\n    cd \/var\/www\/hostshare\/\r\n    sudo ptconfigure auto x --af=build\/ptc\/build-desktop-application.dsl.php --start-dir=\/var\/www\/hostshare --vars=vars\/vm.php\r\nfi"
+        "data": "if [ \"$INCLUDE_DESKTOP_ASSETS\" == \"on\" ] ; then\r\n    # For the Desktop Build\r\n    cd \/var\/www\/hostshare\/\r\n    sudo ptconfigure auto x --af=build\/ptc\/build-desktop-application.dsl.php --start-dir=\/var\/www\/hostshare --vars=vars\/vm.php --include-linux --include-osx\r\nfi"
     }
 }
