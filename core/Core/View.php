@@ -97,6 +97,9 @@ class View {
 
     public function templateExists($path) {
         $php = \ISOPHP\core::$php ;
+        $file_index = \ISOPHP\core::$file_index ;
+        \ISOPHP\js_core::$console->log('view: file index in templateExists', $file_index) ;
+        \ISOPHP\js_core::$console->log($file_index) ;
         if ($php->in_array($path, \ISOPHP\core::$file_index)){
             return true ;
         }
