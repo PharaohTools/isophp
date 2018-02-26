@@ -113,7 +113,7 @@ RunCommand execute
   label "Import the Development Build pipes"
   command "ptbuild importexport import -yg --source=/var/www/hostshare/build/ptbuild/pipes/{{ loop }}"
   guess
-  loop "$$build_pipe_names"
+  loop "{{{ param::build_pipe_names }}}"
 
 RunCommand execute
   label "Create a default admin user"
@@ -162,6 +162,10 @@ GitTools ensure
 
 RunCommand execute
   label "FS Fixes for web writing to share"
-  command "usermod -a -G vboxsf {{ loop }}"
+  command "usermod -a -G vboxsf www-data"
   guess
-  loop "www-data,ptv"
+
+RunCommand execute
+  label "FS Fixes for web writing to share in a Virtual Machine"
+  command "usermod -a -G vboxsf ptv"
+  guess
