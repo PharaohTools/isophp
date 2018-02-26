@@ -4,12 +4,17 @@ namespace Model ;
 
 class Configuration {
 
-    public static $SERVER_URL ;
+    public static $config ;
 
-    public function __construct() {
-        $variables = array() ;
-        require_once (__DIR__.DIRECTORY_SEPARATOR.'default.php') ;
-        self::$SERVER_URL = 'http://server.'.$variables['domain'] ;
+    public static function variable($var) {
+        require (REQUIRE_PREFIX.'/core/default.fephp') ;
+        $config = \Model\Configuration::$config ;
+        $config['env_level'] = 'production' ;
+        $config['ISOPHP_API_SERVER_URL'] = 'http://server.'.$config['domain'] ;
+        if (isset($config[$var])) {
+            return $config[$var];
+        }
+        return null ;
     }
 
 }

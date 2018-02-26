@@ -10,6 +10,7 @@ class Configuration {
         require (REQUIRE_PREFIX.'/core/default.fephp') ;
         $config = \Model\Configuration::$config ;
         $config['ISOPHP_API_SERVER_URL'] = 'http://server.devcloud.'.$config['domain'] ;
+        $config['env_level'] = 'dev' ;
         if (isset($config[$var])) {
             return $config[$var];
         }
