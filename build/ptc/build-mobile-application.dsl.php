@@ -1,6 +1,13 @@
 RunCommand execute
   label "Update NPM"
-  command "npm update -g --silent"
+  command "npm update -g --silent || true"
+  ignore_errors
+  guess
+
+RunCommand execute
+  label "Install Global NPM Packages"
+  command "npm install -g uglify-js browserify cordova@7.0.1 || true"
+  ignore_errors
   guess
 
 RunCommand execute
@@ -65,15 +72,18 @@ RunCommand execute
 
 RunCommand execute
   label "Force install the platforms"
-  command "source {{{ param::start-dir }}}/build/$$android_shell_script && cd {{{ param::start-dir }}}/clients/mobile && cordova platform add {{ loop }}"
+  command "source {{{ param::start-dir }}}/build/$$android_shell_script && cd {{{ param::start-dir }}}/clients/mobile && cordova platform add android"
   guess
-  loop "ios,android"
 
 RunCommand execute
-  label "Force install the cordova plugins"
-  command "source {{{ param::start-dir }}}/build/$$android_shell_script && cd {{{ param::start-dir }}}/clients/mobile && cordova plugin add cordova-plugin-{{ loop }}"
+  label "Force install the cordova splashscreen plugin"
+  command "source {{{ param::start-dir }}}/build/$$android_shell_script && cd {{{ param::start-dir }}}/clients/mobile && cordova plugin add cordova-plugin-splashscreen"
   guess
-  loop "splashscreen,whitelist"
+
+RunCommand execute
+  label "Force install the cordova whitelist plugin"
+  command "source {{{ param::start-dir }}}/build/$$android_shell_script && cd {{{ param::start-dir }}}/clients/mobile && cordova plugin add cordova-plugin-whitelist"
+  guess
 
 RunCommand execute
   label "Build and run the executable applications"
@@ -88,7 +98,7 @@ RunCommand execute
   when "{{{ param::create_apk_only }}}"
 
 RunCommand execute
-  label "Just create the android executable applications"
+  label "Just create the android executable applications source {{{ param::start-dir }}}/build/$$android_shell_script && cd {{{ param::start-dir }}}/clients/mobile"
   command "source {{{ param::start-dir }}}/build/$$android_shell_script && cd {{{ param::start-dir }}}/clients/mobile && cordova build android"
   guess
   when "{{{ param::create_apk_only }}}"
