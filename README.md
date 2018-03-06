@@ -2,40 +2,36 @@
 
 http://www.isophp.org.uk
 
+The first and only Isomorphic Framework in PHP. Write all your logic
+in PHP, once, for a Web, Mobile or Desktop Application for all major platforms.
+
 
 ## Installation
 
-To install the application locally, 
-``
-sudo ptconfigure auto x --af=build/development.dsl.php --start-dir=`pwd` --vars=vars/default.php
-``
-
+Click here for instructions on creating a new ISOPHP application...
+http://www.isophp.org.uk/GetStarted
 
 ## Usage
 
-Simply go to the URL www.isophp.tld
+Simply go to the URL http://www.isophp.vm:8078 after you start the Virtual Machine
 
 
 ## Development
 
 When you make changes to front end logic, you'll need to rebuild them. To
-Rebuild any changes to your Uniter PHP Assets
-``
-ptconfigure auto x --af=build/build-assets.dsl.php --start-dir=`pwd` --vars=vars/default.php
-``
-To build for Desktop
-``
-ptconfigure auto x --af=build/build-assets.dsl.php --start-dir=`pwd` --vars=vars/default.php
-``
+Rebuild any changes to your Uniter PHP Assets, you can use the packaged build server
+which you'll find at http://build.isophp.vm:8078. From there, you can buil
 
 
 
-Part of the Pharaoh Tools group of Websites
-
-Built By Laughing Babies
+Part of the Pharaoh Tools group
 
 Kudos to
 
 Uniter PHP
+
 Cordova
+
 Electron
+
+PHP Desktop
